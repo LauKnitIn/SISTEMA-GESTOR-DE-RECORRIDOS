@@ -1,0 +1,47 @@
+@startuml
+left to right direction
+
+actor Usuario
+actor "Administrador" as Admin
+actor "Usuario Autenticado" as AuthUser
+
+Admin --|> Usuario
+AuthUser --|> Usuario
+
+rectangle "Sistema de Recorridos Turísticos" {
+
+  (Eliminar Reseña) as UC_Eliminar
+  (Iniciar Sesión) as UC_Login
+  (Ir a Perfil) as UC_Perfil
+  (Explorar Reseñas) as UC_Explorar
+  (Elegir Reseña) as UC_Elegir
+  (Seleccionar Borrar Reseña) as UC_Borrar
+  (Confirmar Eliminación) as UC_Confirmar
+  (Cancelar) as UC_Cancelar
+  (Filtrar Reseñas) as UC_Filtrar
+  (Ordenar Reseñas) as UC_Ordenar
+
+}
+
+Usuario --> UC_Eliminar
+
+UC_Eliminar --> UC_Perfil : <<include>>
+UC_Eliminar --> UC_Explorar : <<include>>
+UC_Eliminar --> UC_Elegir : <<include>>
+UC_Eliminar --> UC_Borrar : <<include>>
+UC_Eliminar --> UC_Confirmar : <<include>>
+UC_Eliminar --> UC_Cancelar : <<include>>
+UC_Filtrar ..> UC_Explorar : <<extend>>
+UC_Ordenar ..> UC_Explorar : <<extend>>
+
+' Líneas ocultas para mantener orden visual
+UC_Eliminar -[hidden]-> UC_Login
+UC_Login -[hidden]-> UC_Perfil
+UC_Perfil -[hidden]-> UC_Explorar
+UC_Explorar -[hidden]-> UC_Elegir
+UC_Elegir -[hidden]-> UC_Borrar
+UC_Borrar -[hidden]-> UC_Confirmar
+UC_Confirmar -[hidden]-> UC_Cancelar
+UC_Cancelar -[hidden]-> UC_Filtrar
+UC_Filtrar -[hidden]-> UC_Ordenar
+@enduml

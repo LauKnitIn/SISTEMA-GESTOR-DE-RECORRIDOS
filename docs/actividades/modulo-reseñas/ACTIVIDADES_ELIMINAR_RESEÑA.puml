@@ -1,0 +1,66 @@
+@startuml
+|Usuario|
+start
+:Ir a perfil;
+
+|Sistema|
+:Mostrar opciones de perfil;
+
+|Usuario|
+:Seleccionar historial de recorridos;
+
+|Sistema|
+:Solicitar recorridos del usuario;
+
+|DB|
+:Obtener recorridos del usuario;
+
+|Sistema|
+:Mostrar recorridos;
+
+|Usuario|
+:Seleccionar recorrido;
+
+|Sistema|
+:Solicitar reseñas del recorrido;
+
+|DB|
+:Consultar reseñas;
+
+|Sistema|
+:Mostrar reseñas;
+
+|Usuario|
+:Elegir reseña;
+
+|Sistema|
+:Mostrar opciones de reseña;
+
+|Usuario|
+:Seleccionar borrar reseña;
+
+|Sistema|
+:Solicitar confirmación;
+
+|Usuario|
+if (¿Confirmar eliminación?) then (Sí)
+
+|Sistema|
+:Solicitar eliminación de reseña;
+
+|DB|
+:Eliminar reseña;
+
+|Sistema|
+:Mostrar confirmación de eliminación;
+
+else (Cancelar)
+:Cancelar operación;
+
+|Sistema|
+:Mostrar operación cancelada;
+
+endif
+
+stop
+@enduml

@@ -1,4 +1,4 @@
-# Ignorar carpeta donde estan las imagenes
+# ignorar la carpeta con la imagenes
 Imagenes/
 *.png
 *.jpg

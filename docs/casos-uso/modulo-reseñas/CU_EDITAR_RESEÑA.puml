@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+
+actor Usuario
+actor "Administrador" as Admin
+actor "Usuario Autenticado" as AuthUser
+
+Admin --|> Usuario
+AuthUser --|> Usuario
+
+rectangle "Sistema de Recorridos Turísticos" {
+
+  (Editar Reseña) as UC_Editar
+
+  (Ir a Perfil) as UC_Perfil
+  (Seleccionar Historial de Recorridos) as UC_Historial
+  (Seleccionar Recorrido) as UC_Recorrido
+  (Explorar Reseñas) as UC_Explorar
+  (Elegir Reseña) as UC_Elegir
+
+  (Dar Nueva Puntuación) as UC_Puntuacion
+  (Digitar Nuevo Comentario) as UC_Comentario
+  (Confirmar Cambios) as UC_Confirmar
+  (Cancelar) as UC_Cancelar
+
+  (Filtrar Reseñas) as UC_Filtrar
+  (Ordenar Reseñas) as UC_Ordenar
+
+}
+
+Usuario --> UC_Editar
+
+UC_Editar .> UC_Perfil : <<include>>
+UC_Editar .> UC_Historial : <<include>>
+UC_Editar .> UC_Recorrido : <<include>>
+UC_Editar .> UC_Explorar : <<include>>
+UC_Editar .> UC_Elegir : <<include>>
+UC_Editar .> UC_Puntuacion : <<include>>
+UC_Editar .> UC_Comentario : <<include>>
+UC_Editar .> UC_Confirmar : <<include>>
+UC_Editar .> UC_Cancelar : <<include>>
+
+UC_Filtrar ..> UC_Explorar : <<extend>>
+UC_Ordenar ..> UC_Explorar : <<extend>>
+
+' líneas ocultas para mantener orden visual
+UC_Editar -[hidden]-> UC_Perfil
+UC_Perfil -[hidden]-> UC_Historial
+UC_Historial -[hidden]-> UC_Recorrido
+UC_Recorrido -[hidden]-> UC_Explorar
+UC_Explorar -[hidden]-> UC_Elegir
+UC_Elegir -[hidden]-> UC_Puntuacion
+UC_Puntuacion -[hidden]-> UC_Comentario
+UC_Comentario -[hidden]-> UC_Confirmar
+UC_Confirmar -[hidden]-> UC_Cancelar
+UC_Cancelar -[hidden]-> UC_Filtrar
+UC_Filtrar -[hidden]-> UC_Ordenar
+
+@enduml

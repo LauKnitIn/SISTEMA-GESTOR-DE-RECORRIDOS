@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+
+actor Usuario
+actor "Administrador" as Admin
+actor "Usuario Autenticado" as AuthUser
+actor "Usuario No Autenticado" as Guest
+
+Admin --|> Usuario
+AuthUser --|> Usuario
+
+rectangle "Sistema de Recorridos Turísticos" {
+
+  (Consultar Reseñas) as UC_Consultar
+  (Explorar Reseñas) as UC_Explorar
+  (Filtrar Reseñas) as UC_Filtrar
+  (Ordenar Reseñas) as UC_Ordenar
+
+}
+
+Usuario --> UC_Consultar
+Guest --> UC_Consultar
+
+UC_Consultar --> UC_Explorar : <<include>>
+
+UC_Filtrar ..> UC_Explorar : <<extend>>
+UC_Ordenar ..> UC_Explorar : <<extend>>
+
+' Líneas ocultas para mantener orden visual
+UC_Consultar -[hidden]-> UC_Explorar
+UC_Explorar -[hidden]-> UC_Filtrar
+UC_Filtrar -[hidden]-> UC_Ordenar
+@enduml

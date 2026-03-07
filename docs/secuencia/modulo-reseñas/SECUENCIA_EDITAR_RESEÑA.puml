@@ -1,0 +1,50 @@
+@startuml
+autonumber
+
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+
+Sistema --> Usuario : mostrarOpcionesPerfil()
+
+Usuario -> Sistema : seleccionarHistorialRecorridos()
+
+Sistema -> DB : obtenerRecorridosUsuario(usuario)
+DB --> Sistema : listaRecorridos
+
+Sistema --> Usuario : mostrarRecorridos()
+
+Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
+
+Sistema -> DB : obtenerReseñasRecorrido(idRecorrido)
+DB --> Sistema : listaReseñas
+
+Sistema --> Usuario : mostrarReseñas()
+
+Usuario -> Sistema : elegirReseña(idReseña)
+
+Sistema -> DB : obtenerReseña(idReseña)
+DB --> Sistema : datosReseña
+
+Sistema --> Usuario : mostrarReseñaEditable()
+
+Usuario -> Sistema : digitarNuevoComentario(texto)
+Usuario -> Sistema : darNuevaPuntuacion(valor)
+
+Usuario -> Sistema : guardarCambios()
+
+Sistema --> Usuario : solicitarConfirmacion()
+
+alt Confirmar cambios
+    Usuario -> Sistema : confirmarCambios()
+    Sistema -> DB : actualizarReseña()
+    DB --> Sistema : confirmacion
+    Sistema --> Usuario : reseñaActualizada()
+else Cancelar
+    Usuario -> Sistema : cancelarEdicion()
+    Sistema --> Usuario : operacionCancelada()
+end
+
+@enduml

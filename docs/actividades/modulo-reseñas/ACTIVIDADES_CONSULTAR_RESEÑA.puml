@@ -1,0 +1,47 @@
+@startuml
+|Usuario|
+start
+:Seleccionar recorrido;
+
+|Sistema|
+:Solicitar reseñas del recorrido;
+
+|DB|
+:Obtener reseñas;
+
+|Sistema|
+:Mostrar reseñas;
+
+|Usuario|
+if (¿Aplicar filtro?) then (Sí)
+
+|Sistema|
+:Solicitar reseñas filtradas;
+
+|DB|
+:Consultar reseñas filtradas;
+
+|Sistema|
+:Mostrar reseñas filtradas;
+
+|Usuario|
+endif
+
+if (¿Ordenar reseñas?) then (Sí)
+
+|Sistema|
+:Solicitar reseñas ordenadas;
+
+|DB|
+:Consultar reseñas ordenadas;
+
+|Sistema|
+:Mostrar reseñas ordenadas;
+
+|Usuario|
+endif
+
+:Explorar reseñas;
+
+stop
+@enduml

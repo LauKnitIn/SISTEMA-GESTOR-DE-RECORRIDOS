@@ -1,0 +1,51 @@
+@startuml
+autonumber
+
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+
+Sistema -> DB : obtenerReseñasUsuario(usuario)
+DB --> Sistema : listaReseñas
+
+Sistema --> Usuario : mostrarReseñas()
+
+alt Filtrar reseñas
+    Usuario -> Sistema : aplicarFiltro(criterio)
+    Sistema -> DB : consultarReseñasFiltradas(criterio)
+    DB --> Sistema : reseñasFiltradas
+    Sistema --> Usuario : mostrarReseñasFiltradas()
+else Ordenar reseñas
+    Usuario -> Sistema : ordenarReseñas(tipoOrden)
+    Sistema -> DB : obtenerReseñasOrdenadas(tipoOrden)
+    DB --> Sistema : reseñasOrdenadas
+    Sistema --> Usuario : mostrarReseñasOrdenadas()
+end
+
+Usuario -> Sistema : elegirReseña(idReseña)
+
+Sistema -> DB : obtenerReseña(idReseña)
+DB --> Sistema : datosReseña
+
+Sistema --> Usuario : mostrarReseñaEditable()
+
+Usuario -> Sistema : nuevaPuntuacion(valor)
+Usuario -> Sistema : nuevoComentario(texto)
+
+Usuario -> Sistema : solicitarConfirmarCambios()
+
+Sistema --> Usuario : solicitarConfirmacion()
+
+alt Confirmar edición
+    Usuario -> Sistema : confirmarCambios()
+    Sistema -> DB : actualizarReseña(idReseña, puntuacion, comentario)
+    DB --> Sistema : confirmacionActualizacion
+    Sistema --> Usuario : cambiosGuardados()
+else Cancelar
+    Usuario -> Sistema : cancelarEdicion()
+    Sistema --> Usuario : operacionCancelada()
+end
+
+@enduml

@@ -7,10 +7,14 @@ database DB
 
 Usuario -> Sistema : irAPerfil()
 
+Sistema --> Usuario : mostrarOpcionesPerfil()
+
+Usuario -> Sistema : seleccionarHistorialRecorridos()
+
 Sistema -> DB : obtenerRecorridosUsuario(usuario)
 DB --> Sistema : listaRecorridos
 
-Sistema --> Usuario : mostrarHistorialRecorridos()
+Sistema --> Usuario : mostrarRecorridos()
 
 Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
 
@@ -18,18 +22,6 @@ Sistema -> DB : obtenerReseñasRecorrido(idRecorrido)
 DB --> Sistema : listaReseñas
 
 Sistema --> Usuario : mostrarReseñas()
-
-alt Filtrar reseñas
-    Usuario -> Sistema : aplicarFiltro(criterio)
-    Sistema -> DB : consultarReseñasFiltradas(criterio)
-    DB --> Sistema : reseñasFiltradas
-    Sistema --> Usuario : mostrarReseñasFiltradas()
-else Ordenar reseñas
-    Usuario -> Sistema : ordenarReseñas(tipoOrden)
-    Sistema -> DB : obtenerReseñasOrdenadas(tipoOrden)
-    DB --> Sistema : reseñasOrdenadas
-    Sistema --> Usuario : mostrarReseñasOrdenadas()
-end
 
 Usuario -> Sistema : elegirReseña(idReseña)
 
@@ -47,8 +39,8 @@ Sistema --> Usuario : solicitarConfirmacion()
 
 alt Confirmar cambios
     Usuario -> Sistema : confirmarCambios()
-    Sistema -> DB : actualizarReseña(idReseña, comentario, puntuacion)
-    DB --> Sistema : confirmacionActualizacion
+    Sistema -> DB : actualizarReseña()
+    DB --> Sistema : confirmacion
     Sistema --> Usuario : reseñaActualizada()
 else Cancelar
     Usuario -> Sistema : cancelarEdicion()

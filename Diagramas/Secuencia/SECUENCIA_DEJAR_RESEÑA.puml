@@ -1,0 +1,35 @@
+@startuml
+autonumber
+
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : seleccionarRecorrido()
+Sistema -> DB : obtenerRecorrido()
+DB --> Sistema : datosRecorrido
+
+Usuario -> Sistema : explorarReseñas(recorrido)
+Sistema -> DB : consultarReseñas(recorrido)
+DB --> Sistema : listaReseñas
+
+Usuario -> Sistema : seleccionarAgregarReseña()
+
+Usuario -> Sistema : asignarPuntuacion(valor)
+Usuario -> Sistema : redactarReseña(comentario)
+
+Usuario -> Sistema : solicitarPublicarReseña()
+
+Sistema --> Usuario : solicitarConfirmacion()
+
+alt Confirmar publicación
+    Usuario -> Sistema : confirmarPublicacion()
+    Sistema -> DB : guardarReseña(usuario, recorrido, puntuacion, comentario)
+    DB --> Sistema : confirmacionGuardado
+    Sistema --> Usuario : reseñaPublicada()
+else Cancelar
+    Usuario -> Sistema : cancelarOperacion()
+    Sistema --> Usuario : operacionCancelada()
+end
+
+@enduml

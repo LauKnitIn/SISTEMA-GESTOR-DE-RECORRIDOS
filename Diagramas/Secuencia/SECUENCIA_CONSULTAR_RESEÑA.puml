@@ -1,0 +1,29 @@
+@startuml
+autonumber
+
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : seleccionarRecorrido()
+
+Sistema -> DB : obtenerReseñas(recorrido)
+DB --> Sistema : listaReseñas
+
+Sistema --> Usuario : mostrarReseñas()
+
+alt Filtrar reseñas
+    Usuario -> Sistema : aplicarFiltro(criterio)
+    Sistema -> DB : consultarReseñasFiltradas(criterio)
+    DB --> Sistema : reseñasFiltradas
+    Sistema --> Usuario : mostrarReseñasFiltradas()
+else Ordenar reseñas
+    Usuario -> Sistema : ordenarReseñas(tipoOrden)
+    Sistema -> DB : obtenerReseñasOrdenadas(tipoOrden)
+    DB --> Sistema : reseñasOrdenadas
+    Sistema --> Usuario : mostrarReseñasOrdenadas()
+else Solo explorar reseñas
+    Sistema --> Usuario : visualizarReseñas()
+end
+
+@enduml

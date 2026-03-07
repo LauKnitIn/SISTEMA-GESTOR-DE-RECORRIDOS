@@ -1,0 +1,7 @@
+# ignorar la carpeta con la imagenes
+Imagenes/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+/out/

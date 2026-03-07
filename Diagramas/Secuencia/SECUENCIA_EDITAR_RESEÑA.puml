@@ -7,7 +7,14 @@ database DB
 
 Usuario -> Sistema : irAPerfil()
 
-Sistema -> DB : obtenerReseñasUsuario(usuario)
+Sistema -> DB : obtenerRecorridosUsuario(usuario)
+DB --> Sistema : listaRecorridos
+
+Sistema --> Usuario : mostrarHistorialRecorridos()
+
+Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
+
+Sistema -> DB : obtenerReseñasRecorrido(idRecorrido)
 DB --> Sistema : listaReseñas
 
 Sistema --> Usuario : mostrarReseñas()
@@ -31,18 +38,18 @@ DB --> Sistema : datosReseña
 
 Sistema --> Usuario : mostrarReseñaEditable()
 
-Usuario -> Sistema : nuevaPuntuacion(valor)
-Usuario -> Sistema : nuevoComentario(texto)
+Usuario -> Sistema : digitarNuevoComentario(texto)
+Usuario -> Sistema : darNuevaPuntuacion(valor)
 
-Usuario -> Sistema : solicitarConfirmarCambios()
+Usuario -> Sistema : guardarCambios()
 
 Sistema --> Usuario : solicitarConfirmacion()
 
-alt Confirmar edición
+alt Confirmar cambios
     Usuario -> Sistema : confirmarCambios()
-    Sistema -> DB : actualizarReseña(idReseña, puntuacion, comentario)
+    Sistema -> DB : actualizarReseña(idReseña, comentario, puntuacion)
     DB --> Sistema : confirmacionActualizacion
-    Sistema --> Usuario : cambiosGuardados()
+    Sistema --> Usuario : reseñaActualizada()
 else Cancelar
     Usuario -> Sistema : cancelarEdicion()
     Sistema --> Usuario : operacionCancelada()

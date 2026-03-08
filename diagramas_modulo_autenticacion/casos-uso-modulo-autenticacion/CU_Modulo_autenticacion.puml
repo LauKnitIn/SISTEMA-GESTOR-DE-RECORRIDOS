@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+actor "Usuario sin autenticar" as UA
+actor "Usuario autenticado" as UAT
+actor "Administrador" as Admin
+
+rectangle "Sistema de gestión de recorridos turísticos" {
+  usecase "Crear cuenta" as UC1
+  usecase "Iniciar sesión" as UC2
+  usecase "Recuperar contraseña" as UC3
+  usecase "Cerrar sesión" as UC4
+  usecase "Cambiar contraseña" as UC5
+}
+
+UA --> UC1
+UA --> UC2
+UA --> UC3
+Admin --> UC2
+Admin --> UC3
+Admin --> UC4
+Admin --> UC5
+UAT --> UC4
+UAT --> UC5
+
+@enduml

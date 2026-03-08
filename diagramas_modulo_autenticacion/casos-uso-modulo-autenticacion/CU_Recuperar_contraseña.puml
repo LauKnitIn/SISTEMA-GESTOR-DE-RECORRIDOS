@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+
+actor Usuario
+actor "Usuario sin autenticar" as authUser
+actor Administrador
+
+Usuario <|-- authUser
+Usuario <|-- Administrador
+
+rectangle "Sistema de gestión de recorridos turísticos" {
+  usecase "Recuperar contraseña" as UC_main
+  usecase "Verificar existencia de correo" as UC1
+  usecase "Generar código de recuperación" as UC2
+  usecase "Enviar código de recuperación" as UC3
+  usecase "Ingresar código de recuperación" as UC4
+  usecase "Validar datos ingresados" as UC5
+  usecase "Ingresar nueva contraseña" as UC6
+  usecase "Mostrar error por código inválido" as UC7
+  usecase "Mostrar error por correo no registrado" as UC8
+
+  UC_main --> UC1 : <<include>>
+  UC_main --> UC2 : <<include>>
+  UC_main --> UC3 : <<include>>
+  UC_main --> UC4 : <<include>>
+  UC_main --> UC5 : <<include>>
+  UC_main --> UC6 : <<include>>
+  UC_main --> UC7 : <<include>>
+  UC_main --> UC8 : <<include>>
+}
+
+Usuario --> UC_main
+Usuario --> UC4
+Usuario --> UC6
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+title Crear Cuenta
+
+|Usuario|
+start
+:Accede al módulo de autenticación;
+
+|Sistema|
+:Muestra formulario de registro;
+
+|Usuario|
+:Ingresa datos 
+(nombre, correo, contraseña,
+documento, celular);
+
+|Sistema|
+:Validar datos ingresados;
+
+if (¿Datos válidos?) then (No)
+  :Mostrar error por datos inválidos;
+  stop
+else (Sí)
+
+  |Base de Datos|
+  :Verificar correo no registrado;
+
+  |Sistema|
+  if (¿Correo ya existe?) then (Sí)
+    :Mostrar error por correo existente;
+    stop
+  else (No)
+
+    |Base de Datos|
+    :Guardar información del usuario;
+
+    |Sistema|
+    :Confirmar registro;
+    :Notificar registro exitoso;
+
+  endif
+endif
+
+stop
+@enduml

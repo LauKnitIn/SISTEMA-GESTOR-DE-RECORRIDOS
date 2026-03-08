@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+title Caso de Uso - Iniciar Sesión
+
+actor Usuario
+actor "Usuario sin autenticar" as UNoAuth
+actor Administrador
+
+UNoAuth --|> Usuario
+Administrador --|> Usuario
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+
+  Usuario --> (Iniciar sesión)
+  Usuario --> (Ingresar credenciales)
+
+  (Iniciar sesión) .> (Ingresar credenciales) : <<include>>
+  (Iniciar sesión) .> (Validar credenciales) : <<include>>
+  (Iniciar sesión) .> (Establecer sesión) : <<include>>
+  (Iniciar sesión) .> (Mostrar error por credenciales incorrectas) : <<include>>
+
+}
+
+@enduml

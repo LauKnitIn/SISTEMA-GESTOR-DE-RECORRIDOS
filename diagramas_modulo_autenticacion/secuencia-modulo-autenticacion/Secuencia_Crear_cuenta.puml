@@ -1,0 +1,26 @@
+@startuml
+title Crear Cuenta
+
+actor Usuario
+participant "Sistema" as Sistema
+participant "Base de Datos" as BD
+
+Usuario -> Sistema : 1. Accede al módulo de autenticación
+Sistema --> Usuario : 2. Muestra formulario de registro
+Usuario -> Sistema : 3. Ingresa datos (nombre, correo, contraseña, documento, celular)
+Sistema -> Sistema : 4. Valida datos ingresados
+
+alt Datos inválidos
+    Sistema --> Usuario : 5. Muestra error por datos inválidos
+else Datos válidos
+    Sistema -> BD : 6. Verifica correo no registrado
+    BD --> Sistema : 7. Resultado verificación
+    alt Correo ya existe
+        Sistema --> Usuario : 8. Muestra error por correo existente
+    else Correo disponible
+        Sistema -> BD : 9. Guarda información del usuario
+        BD --> Sistema : 10. Confirmación de registro
+        Sistema --> Usuario : 11. Notifica registro exitoso
+    end
+end
+@enduml

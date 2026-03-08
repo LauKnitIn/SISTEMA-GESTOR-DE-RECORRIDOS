@@ -1,0 +1,36 @@
+@startuml
+title Recuperar Contraseña
+
+actor Usuario
+participant "Sistema" as Sistema
+participant "Base de Datos" as BD
+
+Usuario -> Sistema: 1. Selecciona "¿Olvidó su contraseña?"
+Sistema --> Usuario: 2. Muestra formulario de recuperación
+Usuario -> Sistema: 3. Ingresa correo electrónico
+Sistema -> BD: 4. Verificar correo registrado
+BD --> Sistema: Correo existe / no existe
+
+alt correo existe
+    Sistema -> Sistema: 5. Genera y envía código de recuperación (por correo)
+    Sistema --> Usuario: 6. Muestra campo para código
+    Usuario -> Sistema: 7. Ingresa código de recuperación
+    Sistema -> Sistema: 8. Valida código
+    alt código válido
+        Sistema --> Usuario: 9. Solicita nueva contraseña (formulario)
+        Usuario -> Sistema: 10. Ingresa nueva contraseña
+        Usuario -> Sistema: 11. Confirma cambio
+        Sistema -> BD: 12. Actualiza contraseña
+        BD --> Sistema: Confirmación
+        Sistema --> Usuario: 13. Notifica cambio exitoso
+    else código inválido
+        Sistema --> Usuario: Muestra error "Código inválido"
+    end
+else correo no existe
+    Sistema --> Usuario: Muestra error "Correo no registrado"
+end
+@enduml
+
+
+
+

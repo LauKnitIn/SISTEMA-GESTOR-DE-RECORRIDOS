@@ -1,0 +1,21 @@
+@startuml
+title Iniciar Sesión
+
+actor Usuario
+participant "Sistema" as Sistema
+participant "Base de Datos" as BD
+
+Usuario -> Sistema : 1. Accede al módulo de autenticación
+Sistema --> Usuario : 2. Muestra formulario de ingreso
+Usuario -> Sistema : 3. Ingresa correo y contraseña
+Usuario -> Sistema : 4. Selecciona "Iniciar sesión"
+Sistema -> BD : 5. Consulta usuario por correo
+BD --> Sistema : Retorna datos del usuario
+Sistema -> Sistema : 6. Valida contraseña
+
+alt Credenciales válidas
+    Sistema --> Usuario : 7. Permite acceso al sistema
+else Credenciales inválidas
+    Sistema --> Usuario : 8. Muestra mensaje de error
+end
+@enduml

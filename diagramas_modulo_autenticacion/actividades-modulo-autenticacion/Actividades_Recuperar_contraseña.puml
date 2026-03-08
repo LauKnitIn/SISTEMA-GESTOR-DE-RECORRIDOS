@@ -1,0 +1,53 @@
+@startuml
+title Recuperar Contraseña
+
+|Usuario|
+start
+:1. Selecciona "¿Olvidó su contraseña?";
+
+|Sistema|
+:2. Muestra formulario de recuperación;
+
+|Usuario|
+:3. Ingresa correo electrónico;
+
+|Sistema|
+:4. Solicita verificación de correo;
+
+|Base de Datos|
+:4.1. Consulta existencia de correo;
+:Retorna resultado;
+
+|Sistema|
+if (¿Correo registrado?) then (Sí)
+  :5. Genera código de recuperación;
+  :6. Envía código al correo;
+  :7. Muestra campo para ingreso de código;
+  |Usuario|
+  :8. Ingresa código de recuperación;
+  |Sistema|
+  :9. Valida código;
+  if (¿Código válido?) then (Sí)
+    :10. Solicita nueva contraseña;
+    |Usuario|
+    :11. Ingresa nueva contraseña;
+    :12. Confirma cambio;
+    |Sistema|
+    :13. Solicita actualización de contraseña;
+    |Base de Datos|
+    :14. Actualiza contraseña;
+    :Retorna confirmación;
+    |Sistema|
+    :15. Notifica cambio exitoso;
+    stop
+  else (No)
+    |Sistema|
+    :16. Muestra error "Código inválido";
+    stop
+  endif
+else (No)
+  |Sistema|
+  :17. Muestra error "Correo no registrado";
+  stop
+endif
+@enduml

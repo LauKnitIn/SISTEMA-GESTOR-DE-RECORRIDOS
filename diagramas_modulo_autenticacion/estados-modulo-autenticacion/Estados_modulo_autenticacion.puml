@@ -1,0 +1,19 @@
+@startuml
+title Módulo de Autenticación
+skinparam shadowing false
+
+[*] --> NoAutenticado
+
+NoAutenticado --> Autenticando : Ingresar credenciales
+Autenticando --> Autenticado : [credenciales válidas]
+Autenticando --> NoAutenticado : [credenciales inválidas]
+
+Autenticado --> NoAutenticado : Cerrar sesión
+Autenticado --> SesionExpirada : [30 min inactividad]
+
+SesionExpirada --> NoAutenticado : Reautenticación requerida
+
+NoAutenticado --> RecuperandoContrasena : Olvidó contraseña
+RecuperandoContrasena --> NoAutenticado : Contraseña restablecida
+
+@enduml

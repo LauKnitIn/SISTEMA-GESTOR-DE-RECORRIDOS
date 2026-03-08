@@ -1,0 +1,29 @@
+@startuml
+|Usuario|
+start
+:Selecciona opción "Eliminar cuenta";
+
+|Sistema|
+:Solicita confirmación;
+
+|Usuario|
+if (¿Confirma eliminación?) then (sí)
+  :Confirma eliminación;
+  |Sistema|
+  :Elimina datos del usuario en BD;
+  |BaseDatos|
+  :Elimina datos;
+  :Confirma eliminación;
+  |Sistema|
+  :Notifica eliminación exitosa;
+  :Finaliza sesión;
+  |Usuario|
+  stop
+else (no)
+  :Cancela operación;
+  |Sistema|
+  :No elimina cuenta;
+  |Usuario|
+  stop
+endif
+@enduml

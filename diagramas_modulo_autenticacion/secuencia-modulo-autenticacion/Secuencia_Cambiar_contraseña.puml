@@ -7,24 +7,15 @@ participant "Base de Datos" as BD
 
 Usuario -> Sistema: 1. Selecciona opción "Cambiar contraseña"
 Sistema --> Usuario: 2. Muestra formulario de cambio
-Usuario -> Sistema: 3. Ingresa contraseña actual
-Sistema -> BD: 4. Valida contraseña actual
-BD --> Sistema: Resultado de validación
-
-alt contraseña actual incorrecta
-    Sistema --> Usuario: Muestra error "Contraseña actual incorrecta"
-    Usuario -> Sistema: 3. Reingresa contraseña actual
-else contraseña actual correcta
-    Usuario -> Sistema: 4. Ingresa nueva contraseña
-    Sistema -> Sistema: 5. Valida criterios de nueva contraseña
+Usuario -> Sistema: 3. Ingresa nueva contraseña
+Sistema -> Sistema: 4. Valida criterios de nueva contraseña
     alt nueva contraseña no cumple requisitos
         Sistema --> Usuario: Muestra error y solicita corrección
         Usuario -> Sistema: 4. Reingresa nueva contraseña
     else nueva contraseña válida
-        Usuario -> Sistema: 6. Confirma el cambio
-        Sistema -> BD: 7. Actualiza contraseña
+        Usuario -> Sistema: 5. Confirma el cambio
+        Sistema -> BD: 6. Actualiza contraseña
         BD --> Sistema: Confirmación
-        Sistema --> Usuario: 8. Notifica cambio exitoso
+        Sistema --> Usuario: 7. Notifica cambio exitoso
     end
-end
 @enduml

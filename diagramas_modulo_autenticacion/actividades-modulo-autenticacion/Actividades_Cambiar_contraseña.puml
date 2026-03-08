@@ -9,35 +9,15 @@ start
 :2. Muestra formulario de cambio;
 
 |Usuario|
-:3. Ingresa contraseña actual;
-
-|Sistema|
-:Solicita validación de contraseña actual;
-
-|Base de Datos|
-:Verifica contraseña actual;
-
-|Sistema|
-while (¿Contraseña actual correcta?) is (No)
-:Muestra error\n"Contraseña actual incorrecta";
-|Usuario|
-:Reingresa contraseña actual;
-|Sistema|
-:Solicita validación de contraseña actual;
-|Base de Datos|
-:Verifica contraseña actual;
-endwhile (Sí)
-
-|Usuario|
-:5. Ingresa nueva contraseña;
+:3. Ingresa nueva contraseña;
 
 |Sistema|
 :Valida criterios de nueva contraseña;
 
 while (¿Cumple requisitos?) is (No)
-:Muestra error y solicita corrección;
+:4. Muestra error y solicita corrección;
 |Usuario|
-:Reingresa nueva contraseña;
+:5. Reingresa nueva contraseña;
 |Sistema|
 :Valida criterios de nueva contraseña;
 endwhile (Sí)
@@ -46,13 +26,13 @@ endwhile (Sí)
 :7. Confirma cambio;
 
 |Sistema|
-:Solicita actualización de contraseña;
+:8. Solicita actualización de contraseña;
 
 |Base de Datos|
-:Actualiza contraseña;
+:9. Actualiza contraseña;
 
 |Sistema|
-:9. Notifica cambio exitoso;
+:10. Notifica cambio exitoso;
 
 stop
 @enduml

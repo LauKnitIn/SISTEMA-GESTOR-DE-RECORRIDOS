@@ -10,22 +10,15 @@ Usuario <|-- Administrador
 
 rectangle "Sistema de gestión de recorridos turísticos" {
   usecase "Cambiar contraseña" as UC_main
-  usecase "Ingresar contraseña actual" as UC1
-  usecase "Validar contraseña actual" as UC2
-  usecase "Ingresar nueva contraseña" as UC3
-  usecase "Validar nueva contraseña" as UC4
-  usecase "Mostrar error por contraseña actual incorrecta" as UC5
-  usecase "Mostrar error por nueva contraseña inválida" as UC6
+  usecase "Ingresar nueva contraseña" as UC1
+  usecase "Validar nueva contraseña" as UC2
+  usecase "Mostrar error por nueva contraseña inválida" as UC3
 
   UC_main --> UC1 : <<include>>
   UC_main --> UC2 : <<include>>
   UC_main --> UC3 : <<include>>
-  UC_main --> UC4 : <<include>>
-  UC_main --> UC5 : <<include>>
-  UC_main --> UC6 : <<include>>
 }
 
 Usuario --> UC_main
 Usuario --> UC1
-Usuario --> UC3
 @enduml

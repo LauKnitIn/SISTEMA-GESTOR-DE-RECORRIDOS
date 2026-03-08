@@ -30,7 +30,7 @@ Los diagramas se ordenan en carpetas donde cada carpeta corresponde a un tipo, d
 ---
 
 # Gestión de Ramas
-Para mantener un flujo de trabajo ordenado se utiliza la siguiente estrategia gitflow.
+Para mantener un flujo de trabajo ordenado se utiliza la siguiente estrategia gitflow con las ramas.
 
 ##  `main`
 Contiene las versiones finales y aprobadas del proyecto.
@@ -66,9 +66,7 @@ Para que no haya conflictos en el repositorio:
 -  Crear siempre una rama propia desde `develop`.
 -  Los cambios deben integrarse a `develop` mediante pull request.
 
-
 ---
-
 ##   Trabajo Colaborativo
 
 Cada integrante debe:

@@ -26,7 +26,6 @@ UC1 .> UC7 : <<Include>>
 UC8 .> UC1 : <<Include>>
 
 UC2 -[hidden]-> UC3
-UC5 -[hidden]-> UC6
 UC7 -[hidden]-> UC8
 
 @enduml

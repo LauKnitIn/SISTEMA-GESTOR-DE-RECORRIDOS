@@ -2,8 +2,6 @@
 left to right direction
 
 actor "Usuario sin autenticar" as UsuarioNoAuth
-actor "Usuario" as Usuario
-actor "Administrador" as Admin
 
 rectangle "Sistema de gestión de recorridos turísticos" {
 
@@ -15,11 +13,8 @@ rectangle "Sistema de gestión de recorridos turísticos" {
     usecase "Mostrar error por correo existente" as UC6
 }
 
-UsuarioNoAuth --> Usuario
-Admin --> Usuario
-
-Usuario --> UC1
-Usuario --> UC3
+UsuarioNoAuth --> UC1
+UsuarioNoAuth --> UC3
 
 UC3 --> UC1 : <<include>>
 UC3 --> UC2 : <<include>>

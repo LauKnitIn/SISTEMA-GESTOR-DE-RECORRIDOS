@@ -1,7 +1,7 @@
 @startuml
 title Crear Cuenta
 
-|Usuario|
+|Usuario sin autenticar|
 start
 :Accede al módulo de autenticación;
 
@@ -34,7 +34,6 @@ else (Sí)
     :Guardar información del usuario;
 
     |Sistema|
-    :Confirmar registro;
     :Notificar registro exitoso;
 
   endif

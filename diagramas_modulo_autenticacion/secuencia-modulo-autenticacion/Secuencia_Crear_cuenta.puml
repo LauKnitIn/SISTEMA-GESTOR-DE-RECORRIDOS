@@ -1,7 +1,7 @@
 @startuml
 title Crear Cuenta
 
-actor Usuario
+actor "Usuario sin autenticar"  as Usuario
 participant "Sistema" as Sistema
 participant "Base de Datos" as BD
 
@@ -19,8 +19,7 @@ else Datos válidos
         Sistema --> Usuario : 8. Muestra error por correo existente
     else Correo disponible
         Sistema -> BD : 9. Guarda información del usuario
-        BD --> Sistema : 10. Confirmación de registro
-        Sistema --> Usuario : 11. Notifica registro exitoso
+        Sistema --> Usuario : 10. Notifica registro exitoso
     end
 end
 @enduml

@@ -1,24 +1,24 @@
 @startuml
-title Iniciar Sesión
-
 |Usuario|
 start
-:1. Accede al módulo de autenticación;
-
+:Accede al módulo de autenticación;
 |Sistema|
-:2. Muestra formulario de ingreso;
-
+:Muestra formulario de ingreso;
 |Usuario|
-:3. Ingresa correo y contraseña;
-:4. Selecciona "Iniciar sesión";
-
+:Ingresa correo y contraseña;
+:Selecciona "Iniciar sesión";
 |Sistema|
-:5. Valida credenciales;
-if (¿Credenciales válidas?) then (sí)
-  :6. Permite acceso al sistema;
+:Valida credenciales;
+:Consulta usuario por correo;
+|Base de Datos|
+:Busca usuario por correo;
+:Retorna datos del usuario;
+|Sistema|
+if (¿Credenciales válidas?) then (si)
+  :Permite acceso al sistema;
   stop
 else (no)
-  :7. Muestra mensaje de error;
-  stop
-endif
+  :Muestra mensaje de error;
+stop
 @enduml
+

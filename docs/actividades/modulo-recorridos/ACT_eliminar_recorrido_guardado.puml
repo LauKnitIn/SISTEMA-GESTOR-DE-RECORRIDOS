@@ -1,0 +1,34 @@
+@startuml Actividad - Eliminar Recorrido Guardado
+|Usuario|
+start
+:Ir a perfil;
+|Sistema|
+:Mostrar opciones\nde perfil;
+|Usuario|
+:Abrir ventana de\nrecorridos guardados;
+|Sistema|
+:Solicitar recorridos\nguardados del usuario;
+|DB|
+:Obtener recorridos\nguardados;
+|Sistema|
+:Mostrar listado de\nrecorridos guardados;
+|Usuario|
+:Seleccionar recorrido\na eliminar;
+|Sistema|
+:Solicitar confirmación\nde eliminación;
+|Usuario|
+if (¿Confirmar eliminación?) then (Sí)
+|Sistema|
+:Solicitar eliminación\ndel recorrido;
+|DB|
+:Eliminar recorrido\nguardado;
+|Sistema|
+:Actualizar listado\nde recorridos guardados;
+:Mostrar confirmación\nde eliminación;
+else (Cancelar)
+:Cancelar operación;
+|Sistema|
+:Mostrar operación\ncancelada;
+endif
+stop
+@enduml

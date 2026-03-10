@@ -1,0 +1,22 @@
+@startuml Secuencia - Consultar Reservas Historial
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+Sistema --> Usuario : mostrarOpcionesPerfil()
+Usuario -> Sistema : seleccionarHistorialReservas()
+Sistema -> DB : obtenerHistorialReservas(idUsuario)
+DB --> Sistema : historialReservas
+Sistema -> Sistema : ordenarPorFecha(historialReservas)
+Sistema --> Usuario : mostrarHistorialReservas()
+alt Lista vacía
+    Sistema --> Usuario : mostrarMensajeSinReservas()
+else Lista con reservas
+    Usuario -> Sistema : seleccionarReserva(idReserva)
+    Sistema -> DB : obtenerDetalleReserva(idReserva)
+    DB --> Sistema : detalleReserva
+    Sistema --> Usuario : mostrarDetalleReserva()
+end
+@enduml

@@ -1,0 +1,41 @@
+@startuml Secuencia - Filtrar Recorridos
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPaginaRecorridos()
+Sistema -> DB : obtenerRecorridos()
+DB --> Sistema : listaRecorridos
+Sistema --> Usuario : mostrarRecorridos()
+Usuario -> Sistema : seleccionarCriterioFiltro()
+alt Filtrar por Ciudad
+    Usuario -> Sistema : filtrarPorCiudad(ciudad)
+    Sistema -> DB : obtenerRecorridosPorCiudad(ciudad)
+    DB --> Sistema : recorridosFiltrados
+    Sistema --> Usuario : mostrarRecorridosFiltrados()
+else Filtrar por Categoría
+    Usuario -> Sistema : filtrarPorCategoria(categoria)
+    Sistema -> DB : obtenerRecorridosPorCategoria(categoria)
+    DB --> Sistema : recorridosFiltrados
+    Sistema --> Usuario : mostrarRecorridosFiltrados()
+else Filtrar por Precio
+    Usuario -> Sistema : filtrarPorPrecio(rango)
+    Sistema -> DB : obtenerRecorridosPorPrecio(rango)
+    DB --> Sistema : recorridosFiltrados
+    Sistema --> Usuario : mostrarRecorridosFiltrados()
+else Filtrar por Clima
+    Usuario -> Sistema : filtrarSegunClima()
+    Sistema -> Sistema : clasificarClima(datosClimaticos)
+    Sistema -> Sistema : aplicarReglasAdaptacion(clasificacion)
+    Sistema -> DB : obtenerRecorridosPorClima(clasificacion)
+    DB --> Sistema : recorridosFiltrados
+    Sistema --> Usuario : mostrarRecorridosFiltrados()
+end
+alt Limpiar filtros
+    Usuario -> Sistema : limpiarFiltros()
+    Sistema -> DB : obtenerRecorridos()
+    DB --> Sistema : listaRecorridos
+    Sistema --> Usuario : mostrarRecorridos()
+end
+@enduml

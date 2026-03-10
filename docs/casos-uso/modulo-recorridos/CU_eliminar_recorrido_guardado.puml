@@ -1,0 +1,26 @@
+@startuml Casos de Uso - Eliminar Recorrido Guardado
+left to right direction
+
+actor "Usuario Autenticado" as UA
+
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Seleccionar recorrido\na eliminar" as UC3
+  usecase "Eliminar recorrido\nguardado" as UC4
+  usecase "Confirmar eliminación" as UC5
+  usecase "Actualizar listado\nde recorridos guardados" as UC6
+  usecase "Cancelar eliminación" as UC7
+}
+
+UA --> UC4
+
+UC4 .> UC3 : <<Include>>
+UC4 .> UC5 : <<Include>>
+UC4 .> UC6 : <<Include>>
+UC7 .> UC4 : <<Extend>>
+
+UC4 -[hidden]-> UC5
+UC5 -[hidden]-> UC6
+UC6 -[hidden]-> UC7
+
+@enduml

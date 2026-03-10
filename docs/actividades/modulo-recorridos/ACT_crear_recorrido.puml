@@ -1,0 +1,45 @@
+@startuml Actividad - Crear Recorrido
+|Administrador|
+start
+:Acceder al panel\nde administración;
+|Sistema|
+:Mostrar opciones\ndel panel;
+|Administrador|
+:Seleccionar crear\nnuevo recorrido;
+|Sistema|
+:Mostrar formulario\nde creación;
+|Administrador|
+:Ingresar nombre\ndel recorrido;
+:Ingresar descripción\ny duración estimada;
+:Asignar lugares\nturísticos;
+:Definir itinerario;
+:Ingresar encuentro\ny recogida;
+:Asignar costo y\ntarifas por edad;
+:Agregar fotos;
+:Ingresar recomendaciones\ngenerales;
+:Ingresar política\ndel recorrido;
+:Seleccionar guardar;
+|Sistema|
+:Validar datos\ningresados;
+if (¿Datos válidos?) then (No)
+|Sistema|
+:Mostrar errores\nde validación;
+|Administrador|
+:Corregir datos;
+else (Sí)
+endif
+|Sistema|
+:Solicitar guardado\ndel recorrido;
+|DB|
+:Guardar nuevo\nrecorrido;
+|Sistema|
+:Mostrar confirmación\nde creación;
+|Administrador|
+if (¿Cancelar en\ncualquier momento?) then (Sí)
+|Sistema|
+:Descartar formulario;
+:Mostrar operación\ncancelada;
+else (No)
+endif
+stop
+@enduml

@@ -1,0 +1,35 @@
+@startuml Actividad - Eliminar Recorrido
+|Administrador|
+start
+:Acceder como\n administrador;
+|Sistema|
+:Mostrar listado de recorridos;
+:Solicitar recorridos;
+|DB|
+:Obtener listado\nde recorridos;
+|Sistema|
+:Mostrar listado\nde recorridos;
+|Administrador|
+:Seleccionar recorrido\na eliminar;
+|Sistema|
+:Solicitar información\ndel recorrido;
+|DB|
+:Obtener datos\ndel recorrido;
+|Sistema|
+:Solicitar confirmación\nde eliminación;
+|Administrador|
+if (¿Confirmar eliminación?) then (Sí)
+|Sistema|
+:Solicitar eliminación\ndel recorrido;
+|DB|
+:Eliminar recorrido;
+|Sistema|
+:Actualizar listado\nde recorridos;
+:Mostrar confirmación\nde eliminación;
+else (Cancelar)
+:Cancelar operación;
+|Sistema|
+:Mostrar operación\ncancelada;
+endif
+stop
+@enduml

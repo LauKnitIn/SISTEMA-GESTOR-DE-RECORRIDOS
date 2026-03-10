@@ -1,0 +1,34 @@
+@startuml Secuencia - Reservar Recorrido
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Usuario : mostrarInformacionRecorrido()
+Usuario -> Sistema : seleccionarReservar()
+Sistema -> Sistema : verificarAutenticacion()
+alt Usuario no autenticado
+    Sistema --> Usuario : redirigirALogin()
+    Usuario -> Sistema : iniciarSesion(usuario, contrasena)
+    Sistema -> DB : validarCredenciales(usuario, contrasena)
+    DB --> Sistema : credencialesValidas
+    Sistema --> Usuario : sesionIniciada()
+end
+Sistema --> Usuario : mostrarFormularioReserva()
+Usuario -> Sistema : seleccionarFechaDisponible(fecha)
+Usuario -> Sistema : ingresarNumeroPersonas(cantidad, edades)
+Sistema -> Sistema : calcularCostoTotal(cantidad, edades, tarifas)
+Sistema --> Usuario : mostrarResumenReserva(costoTotal)
+alt Confirmar reserva
+    Usuario -> Sistema : confirmarReserva()
+    Sistema -> DB : registrarReserva(idUsuario, idRecorrido, fecha, personas)
+    DB --> Sistema : confirmacion
+    Sistema --> Usuario : mostrarConfirmacionReserva()
+else Cancelar
+    Usuario -> Sistema : cancelarReserva()
+    Sistema --> Usuario : operacionCancelada()
+end
+@enduml

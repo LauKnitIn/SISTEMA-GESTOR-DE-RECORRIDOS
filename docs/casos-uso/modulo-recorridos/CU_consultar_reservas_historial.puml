@@ -1,0 +1,26 @@
+@startuml Casos de Uso - Consultar Historial de Reservas
+left to right direction
+
+actor "Usuario Autenticado" as UA
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Acceder al perfil\nde usuario" as UC1
+  usecase "Abrir ventana de\nreservas" as UC2
+  usecase "Ver historial de\nreservas" as UC3
+  usecase "Seleccionar reserva" as UC5
+  usecase "Ver detalle\nde la reserva" as UC6
+}
+
+UA --> UC3
+
+UC3 .> UC1 : <<Include>>
+UC3 .> UC2 : <<Include>>
+UC3 .> UC5 : <<Include>>
+UC3 .> UC6 : <<Include>>
+
+UC1 -[hidden]-> UC2
+UC2 -[hidden]-> UC3
+UC4 -[hidden]-> UC5
+UC5 -[hidden]-> UC6
+
+@enduml

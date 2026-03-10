@@ -1,0 +1,27 @@
+@startuml Secuencia - Consultar Recorridos Guardados
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+Sistema --> Usuario : mostrarOpcionesPerfil()
+Usuario -> Sistema : abrirRecorridosGuardados()
+Sistema -> DB : obtenerRecorridosGuardados(idUsuario)
+DB --> Sistema : listaRecorridosGuardados
+alt Lista vacía
+    Sistema --> Usuario : mostrarMensajeSinRecorridos()
+else Lista con recorridos
+    Sistema --> Usuario : mostrarListadoRecorridosGuardados()
+    Usuario -> Sistema : seleccionarRecorridoGuardado(idRecorrido)
+    Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+    DB --> Sistema : datosRecorrido
+    Sistema --> Usuario : mostrarInformacionRecorrido()
+    alt Eliminar recorrido guardado
+        Usuario -> Sistema : seleccionarEliminar(idRecorrido)
+    else Volver al listado
+        Usuario -> Sistema : volverAlListado()
+        Sistema --> Usuario : mostrarListadoRecorridosGuardados()
+    end
+end
+@enduml

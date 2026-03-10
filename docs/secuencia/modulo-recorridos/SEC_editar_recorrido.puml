@@ -1,0 +1,33 @@
+@startuml Secuencia - Editar Recorrido
+autonumber
+actor Administrador
+participant Sistema
+database DB
+
+Administrador -> Sistema : accederPanelAdministracion()
+Sistema --> Administrador : mostrarOpcionesPanel()
+Administrador -> Sistema : seleccionarListadoRecorridos()
+Sistema -> DB : obtenerRecorridos()
+DB --> Sistema : listaRecorridos
+Sistema --> Administrador : mostrarListadoRecorridos()
+Administrador -> Sistema : seleccionarRecorridoAEditar(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Administrador : mostrarFormularioEditable(datosRecorrido)
+Administrador -> Sistema : modificarCamposDeseados(cambios)
+Administrador -> Sistema : guardarCambios()
+Sistema -> Sistema : validarDatosModificados()
+alt Datos inválidos
+    Sistema --> Administrador : mostrarErroresValidacion()
+    Administrador -> Sistema : corregirDatos()
+    Sistema -> Sistema : validarDatos()
+end
+Sistema -> DB : actualizarRecorrido(idRecorrido, cambios)
+DB --> Sistema : confirmacion
+Sistema --> Administrador : mostrarConfirmacionActualizacion()
+alt Cancelar edición
+    Administrador -> Sistema : cancelarEdicion()
+    Sistema --> Administrador : descartarCambios()
+    Sistema --> Administrador : operacionCancelada()
+end
+@enduml

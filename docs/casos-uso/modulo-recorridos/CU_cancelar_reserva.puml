@@ -1,0 +1,37 @@
+@startuml Casos de Uso - Cancelar Reserva
+left to right direction
+
+actor "Usuario Autenticado" as UA
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Acceder al perfil\nde usuario" as UC1
+  usecase "Abrir ventana de\nreservas" as UC2
+  usecase "Ver listado de\nreservas activas" as UC3
+  usecase "Seleccionar reserva\na cancelar" as UC4
+  usecase "Ver detalle\nde la reserva" as UC5
+  usecase "Cancelar reserva" as UC6
+  usecase "Confirmar cancelación" as UC7
+  usecase "Actualizar listado\nde reservas" as UC8
+  usecase "Descartar cancelación" as UC9
+}
+
+UA --> UC6
+
+UC6 .> UC1 : <<Include>>
+UC6 .> UC2 : <<Include>>
+UC6 .> UC3 : <<Include>>
+UC6 .> UC4 : <<Include>>
+UC6 .> UC5 : <<Include>>
+UC6 .> UC7 : <<Include>>
+UC6 .> UC8 : <<Include>>
+
+UC1 -[hidden]-> UC2
+UC2 -[hidden]-> UC3
+UC3 -[hidden]-> UC4
+UC4 -[hidden]-> UC5
+UC5 -[hidden]-> UC6
+UC6 -[hidden]-> UC7
+UC7 -[hidden]-> UC8
+UC8 -[hidden]-> UC9
+
+@enduml

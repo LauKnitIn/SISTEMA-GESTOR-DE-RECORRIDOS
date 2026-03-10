@@ -1,0 +1,39 @@
+@startuml Actividad - Guardar Recorrido
+|Usuario|
+start
+:Seleccionar recorrido;
+|Sistema|
+:Mostrar información\ndel recorrido;
+|Usuario|
+:Seleccionar opción\nguardar recorrido;
+|Sistema|
+:Verificar autenticación\ndel usuario;
+if (¿Usuario autenticado?) then (No)
+|Sistema|
+:Redirigir al\nformulario de login;
+|Usuario|
+:Iniciar sesión;
+|Sistema|
+:Validar credenciales;
+|DB|
+:Verificar usuario;
+|Sistema|
+:Confirmar autenticación;
+else (Sí)
+endif
+|Sistema|
+:Solicitar confirmación\nde guardado;
+|Usuario|
+if (¿Confirmar guardado?) then (Sí)
+|Sistema|
+:Registrar recorrido\nen historial;
+|DB|
+:Guardar recorrido\ndel usuario;
+|Sistema|
+:Mostrar confirmación\nde guardado;
+else (Cancelar)
+|Sistema|
+:Cancelar operación;
+endif
+stop
+@enduml

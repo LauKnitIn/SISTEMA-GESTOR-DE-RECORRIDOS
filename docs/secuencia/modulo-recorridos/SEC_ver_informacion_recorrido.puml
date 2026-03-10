@@ -1,0 +1,31 @@
+@startuml Secuencia - Ver Información Recorrido
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Usuario : mostrarNombreYNivelRecomendacion()
+Sistema --> Usuario : mostrarFotos()
+Sistema --> Usuario : mostrarDescripcionYDuracion()
+Sistema --> Usuario : mostrarAproximacionClimatica()
+Sistema --> Usuario : mostrarCostoYTarifas()
+Sistema --> Usuario : mostrarItinerario()
+Sistema --> Usuario : mostrarEncuentroYRecogida()
+Sistema --> Usuario : mostrarRecomendacionesGenerales()
+Sistema -> DB : obtenerReseñas(idRecorrido)
+DB --> Sistema : listaReseñas
+Sistema --> Usuario : mostrarReseñas()
+alt Reservar recorrido
+    Usuario -> Sistema : seleccionarReservar()
+else Guardar recorrido
+    Usuario -> Sistema : seleccionarGuardar()
+else Volver al listado
+    Usuario -> Sistema : volverAlListado()
+    Sistema -> DB : obtenerRecorridos()
+    DB --> Sistema : listaRecorridos
+    Sistema --> Usuario : mostrarListadoRecorridos()
+end
+@enduml

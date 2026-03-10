@@ -1,0 +1,30 @@
+@startuml Actividad - Consultar Reservas Historial
+|Usuario|
+start
+:Ir a perfil;
+|Sistema|
+:Mostrar opciones\nde perfil;
+|Usuario|
+:Seleccionar historial\nde reservas;
+|Sistema|
+:Solicitar historial\nde reservas del usuario;
+|DB|
+:Obtener historial\nde reservas;
+|Sistema|
+:Mostrar historial\nde reservas;
+|Usuario|
+if (¿Listado vacío?) then (Sí)
+|Sistema|
+:Mostrar mensaje\nsin reservas registradas;
+else (No)
+|Usuario|
+:Seleccionar reserva;
+|Sistema|
+:Solicitar detalle\nde la reserva;
+|DB|
+:Obtener detalle\nde la reserva;
+|Sistema|
+:Mostrar detalle\nde la reserva;
+endif
+stop
+@enduml

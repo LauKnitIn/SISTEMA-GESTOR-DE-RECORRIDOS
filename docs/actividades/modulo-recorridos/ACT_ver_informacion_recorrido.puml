@@ -1,0 +1,25 @@
+@startuml Actividad - Ver Información del Recorrido
+|Usuario|
+start
+:Seleccionar recorrido\ndel listado;
+|Sistema|
+:Solicitar información\ndel recorrido;
+|DB|
+:Obtener datos\ndel recorrido;
+|Sistema|
+:Mostrar nombre y nivel\nde recomendación;
+:Mostrar fotos;
+:Mostrar descripción y\nduración estimada;
+:Mostrar aproximación\nclimática;
+:Mostrar costo y\ntarifas por edad;
+:Mostrar itinerario;
+:Mostrar punto de encuentro;
+:Mostrar recomendaciones\ngenerales;
+|DB|
+:Obtener reseñas\ndel recorrido;
+|Sistema|
+:Mostrar reseñas;
+|Usuario|
+:Leer información\ndel recorrido;
+stop
+@enduml

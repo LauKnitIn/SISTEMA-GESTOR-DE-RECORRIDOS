@@ -1,0 +1,34 @@
+@startuml Actividad - Cancelar Reserva
+|Usuario|
+start
+:Ir a perfil;
+|Sistema|
+:Mostrar opciones\nde perfil;
+|Usuario|
+:Abrir ventana\nde reservas;
+|Sistema|
+:Solicitar reservas del usuario;
+|DB|
+:Obtener reservas;
+|Sistema|
+:Mostrar listado\nde reservas;
+|Usuario|
+:Seleccionar reserva\na cancelar;
+|Sistema|
+:Solicitar confirmación\nde cancelación;
+|Usuario|
+if (¿Confirmar cancelación?) then (Sí)
+|Sistema|
+:Solicitar cancelación\nde reserva;
+|DB|
+:Actualizar estado\nde reserva a cancelada;
+|Sistema|
+:Actualizar listado\nde reservas;
+:Mostrar confirmación\nde cancelación;
+else (Descartar)
+:Descartar cancelación;
+|Sistema|
+:Mostrar operación\ncancelada;
+endif
+stop
+@enduml

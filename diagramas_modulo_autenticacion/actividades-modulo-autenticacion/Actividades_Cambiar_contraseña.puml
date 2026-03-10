@@ -3,36 +3,36 @@ title Cambiar Contraseña
 
 |Usuario|
 start
-:1. Selecciona opción "Cambiar contraseña";
+:Selecciona opción "Cambiar contraseña";
 
 |Sistema|
-:2. Muestra formulario de cambio;
+:Muestra formulario de cambio;
 
 |Usuario|
-:3. Ingresa nueva contraseña;
+:Ingresa nueva contraseña;
 
 |Sistema|
 :Valida criterios de nueva contraseña;
 
 while (¿Cumple requisitos?) is (No)
-:4. Muestra error y solicita corrección;
+:Muestra error y solicita corrección;
 |Usuario|
-:5. Reingresa nueva contraseña;
+:Reingresa nueva contraseña;
 |Sistema|
 :Valida criterios de nueva contraseña;
 endwhile (Sí)
 
 |Usuario|
-:7. Confirma cambio;
+:Confirma cambio;
 
 |Sistema|
-:8. Solicita actualización de contraseña;
+:Solicita actualización de contraseña;
 
 |Base de Datos|
-:9. Actualiza contraseña;
+:Actualiza contraseña;
 
 |Sistema|
-:10. Notifica cambio exitoso;
+:Notifica cambio exitoso;
 
 stop
 @enduml

@@ -1,6 +1,5 @@
 @startuml
 left to right direction
-title Iniciar Sesión
 
 actor Usuario
 actor "Usuario sin autenticar" as UNoAuth

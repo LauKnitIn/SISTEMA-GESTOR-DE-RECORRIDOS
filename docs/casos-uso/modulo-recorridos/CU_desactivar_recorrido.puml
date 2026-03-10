@@ -1,17 +1,17 @@
-@startuml Casos de Uso - Eliminar Recorrido
+@startuml Casos de Uso - Desactivar Recorrido
 left to right direction
 
 actor "Administrador" as Admin
 
 rectangle "Sistema de Gestión de Recorridos Turísticos" {
-  usecase "Eliminar recorrido" as UC1
+  usecase "Desactivar recorrido" as UC1
   usecase "Acceder al panel\nde administración" as UC2
   usecase "Ver listado de\nrecorridos" as UC3
-  usecase "Seleccionar recorrido\na eliminar" as UC4
+  usecase "Seleccionar recorrido\na desactivar" as UC4
   usecase "Ver información\ndel recorrido" as UC5
-  usecase "Confirmar eliminación" as UC6
+  usecase "Confirmar desactivación" as UC6
   usecase "Actualizar listado\nde recorridos" as UC7
-  usecase "Cancelar eliminación" as UC8
+  usecase "Cancelar desactivación" as UC8
 }
 
 Admin --> UC1

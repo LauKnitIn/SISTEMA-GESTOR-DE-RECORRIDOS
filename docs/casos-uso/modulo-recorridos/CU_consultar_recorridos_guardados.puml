@@ -1,0 +1,30 @@
+@startuml Casos de Uso - Consultar Recorridos Guardados
+left to right direction
+
+actor "Usuario Autenticado" as UA
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Consultar recorridos\nguardados" as UC1
+  usecase "Acceder al perfil\nde usuario" as UC2
+  usecase "Abrir ventana de\nrecorridos guardados" as UC3
+  usecase "Ver listado de\nrecorridos guardados" as UC4
+  usecase "Seleccionar recorrido\nguardado" as UC6
+  usecase "Ver información\ndel recorrido" as UC7
+  usecase "Eliminar recorrido\nguardado" as UC8
+}
+
+UA    --> UC1
+
+UC1 .> UC2 : <<Include>>
+UC1 .> UC3 : <<Include>>
+UC1 .> UC4 : <<Include>>
+UC1 .> UC6 : <<Include>>
+UC1 .> UC7 : <<Include>>
+UC8 .> UC1 : <<Extend>>
+
+UC2 -[hidden]-> UC3
+UC3 -[hidden]-> UC4
+UC6 -[hidden]-> UC7
+UC7 -[hidden]-> UC8
+
+@enduml

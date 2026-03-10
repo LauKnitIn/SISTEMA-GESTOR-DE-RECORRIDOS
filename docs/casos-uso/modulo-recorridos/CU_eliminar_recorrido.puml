@@ -1,0 +1,34 @@
+@startuml Casos de Uso - Eliminar Recorrido
+left to right direction
+
+actor "Administrador" as Admin
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Eliminar recorrido" as UC1
+  usecase "Acceder al panel\nde administración" as UC2
+  usecase "Ver listado de\nrecorridos" as UC3
+  usecase "Seleccionar recorrido\na eliminar" as UC4
+  usecase "Ver información\ndel recorrido" as UC5
+  usecase "Confirmar eliminación" as UC6
+  usecase "Actualizar listado\nde recorridos" as UC7
+  usecase "Cancelar eliminación" as UC8
+}
+
+Admin --> UC1
+
+UC1 .> UC2 : <<Include>>
+UC1 .> UC3 : <<Include>>
+UC1 .> UC4 : <<Include>>
+UC1 .> UC5 : <<Extend>>
+UC1 .> UC6 : <<Include>>
+UC1 .> UC7 : <<Include>>
+UC8 .> UC1 : <<Extend>>
+
+UC2 -[hidden]-> UC3
+UC3 -[hidden]-> UC4
+UC4 -[hidden]-> UC5
+UC5 -[hidden]-> UC6
+UC6 -[hidden]-> UC7
+UC7 -[hidden]-> UC8
+
+@enduml

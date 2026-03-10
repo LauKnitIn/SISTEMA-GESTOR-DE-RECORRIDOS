@@ -1,0 +1,46 @@
+@startuml Actividad - Editar Recorrido
+|Administrador|
+start
+:Acceder al panel\nde administración;
+|Sistema|
+:Mostrar listado de recorridos;
+:Solicitar recorridos;
+|DB|
+:Obtener listado\nde recorridos;
+|Sistema|
+:Mostrar listado\nde recorridos;
+|Administrador|
+:Seleccionar recorrido\na editar;
+|Sistema|
+:Solicitar datos\ndel recorrido;
+|DB|
+:Obtener datos\ndel recorrido;
+|Sistema|
+:Mostrar formulario\neditable con datos actuales;
+|Administrador|
+:Modificar campos\ndeseados;
+:Seleccionar guardar\ncambios;
+|Sistema|
+:Validar datos\nmodificados;
+if (¿Datos válidos?) then (No)
+|Sistema|
+:Mostrar errores\nde validación;
+|Administrador|
+:Corregir datos;
+else (Sí)
+endif
+|Sistema|
+:Solicitar actualización;
+|DB|
+:Guardar cambios\ndel recorrido;
+|Sistema|
+:Mostrar confirmación\nde actualización;
+|Administrador|
+if (¿Cancelar edición?) then (Sí)
+|Sistema|
+:Descartar cambios;
+:Mostrar operación\ncancelada;
+else (No)
+endif
+stop
+@enduml

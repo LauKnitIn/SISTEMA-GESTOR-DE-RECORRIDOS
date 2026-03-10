@@ -1,0 +1,65 @@
+@startuml Actividad - Filtrar recorridos
+|Usuario|
+start
+:Ir a la página
+de recorridos;
+
+|Sistema|
+:Mostrar listado de
+recorridos disponibles;
+
+|Usuario|
+:Seleccionar criterio
+a filtrar;
+
+if (¿Qué filtro aplica?) then (Ciudad)
+|Sistema|
+:Solicitar recorridos
+por ciudad;
+|BD|
+:Consultar recorridos
+por ciudad;
+|Sistema|
+:Recibir resultados;
+
+elseif (Categoría)
+|Sistema|
+:Solicitar recorridos
+por categoría;
+|BD|
+:Consultar recorridos
+por categoría;
+|Sistema|
+:Recibir resultados;
+
+elseif (Precio)
+|Sistema|
+:Solicitar recorridos
+por precio;
+|BD|
+:Consultar recorridos
+por precio;
+|Sistema|
+:Recibir resultados;
+
+endif
+
+|Sistema|
+:Mostrar recorridos
+filtrados;
+
+|Usuario|
+if (¿Limpiar filtros?) then (Sí)
+|Sistema|
+:Restablecer listado
+completo;
+|BD|
+:Consultar todos los
+recorridos;
+else (No)
+:Mantener filtros
+aplicados;
+endif
+
+stop
+@enduml

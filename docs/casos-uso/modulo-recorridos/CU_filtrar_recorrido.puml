@@ -1,0 +1,33 @@
+@startuml Casos de Uso - Filtrar Recorrido
+left to right direction
+
+actor "Usuario" as USin
+actor "Administrador" as Admin
+actor "Usuario Autenticado" as UA
+
+Admin --|> USin
+UA --|> USin
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Filtrar Recorridos" as UC2
+  usecase "Seleccionar Criterio a Filtrar" as UC3
+  usecase "Filtrar por Ciudad" as UC4
+  usecase "Filtrar por Categoría" as UC5
+  usecase "Filtrar por Precio" as UC6
+  usecase "Limpiar Filtros" as UC8
+}
+
+USin  --> UC2
+
+UC2 .> UC3 : <<Include>>
+UC4 .> UC2 : <<Extend>>
+UC5 .> UC2 : <<Extend>>
+UC6 .> UC2 : <<Extend>>
+UC8 .> UC2 : <<Extend>>
+
+UC2 -[hidden]-> UC3
+UC3 -[hidden]-> UC4
+UC4 -[hidden]-> UC5
+UC5 -[hidden]-> UC6
+
+@enduml

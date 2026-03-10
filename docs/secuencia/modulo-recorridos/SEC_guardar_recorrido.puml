@@ -1,0 +1,30 @@
+@startuml Secuencia - Guardar Recorrido
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : seleccionarRecorrido(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Usuario : mostrarInformacionRecorrido()
+Usuario -> Sistema : seleccionarGuardarRecorrido()
+Sistema -> Sistema : verificarAutenticacion()
+alt Usuario no autenticado
+    Sistema --> Usuario : redirigirALogin()
+    Usuario -> Sistema : iniciarSesion(usuario, contrasena)
+    Sistema -> DB : validarCredenciales(usuario, contrasena)
+    DB --> Sistema : credencialesValidas
+    Sistema --> Usuario : sesionIniciada()
+end
+Sistema --> Usuario : solicitarConfirmacionGuardado()
+alt Confirmar guardado
+    Usuario -> Sistema : confirmarGuardado()
+    Sistema -> DB : guardarRecorridoUsuario(idUsuario, idRecorrido)
+    DB --> Sistema : confirmacion
+    Sistema --> Usuario : mostrarConfirmacionGuardado()
+else Cancelar
+    Usuario -> Sistema : cancelarGuardado()
+    Sistema --> Usuario : operacionCancelada()
+end
+@enduml

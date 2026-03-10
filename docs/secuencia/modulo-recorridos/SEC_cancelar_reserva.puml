@@ -1,0 +1,30 @@
+@startuml Secuencia - Cancelar Reserva
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+Sistema --> Usuario : mostrarOpcionesPerfil()
+Usuario -> Sistema : abrirVentanaReservas()
+Sistema -> DB : obtenerReservasActivas(idUsuario)
+DB --> Sistema : listaReservasActivas
+Sistema --> Usuario : mostrarListadoReservasActivas()
+Usuario -> Sistema : seleccionarReservaACancelar(idReserva)
+Sistema -> DB : obtenerDetalleReserva(idReserva)
+DB --> Sistema : detalleReserva
+Sistema --> Usuario : mostrarDetalleReserva()
+Sistema --> Usuario : solicitarConfirmacionCancelacion()
+alt Confirmar cancelación
+    Usuario -> Sistema : confirmarCancelacion()
+    Sistema -> DB : actualizarEstadoReserva(idReserva, "cancelada")
+    DB --> Sistema : confirmacion
+    Sistema -> DB : obtenerReservasActivas(idUsuario)
+    DB --> Sistema : listaActualizada
+    Sistema --> Usuario : mostrarListadoActualizado()
+    Sistema --> Usuario : mostrarConfirmacionCancelacion()
+else Descartar
+    Usuario -> Sistema : descartarCancelacion()
+    Sistema --> Usuario : operacionCancelada()
+end
+@enduml

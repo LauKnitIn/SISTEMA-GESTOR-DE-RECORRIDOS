@@ -1,0 +1,34 @@
+@startuml Actividad - Consultar Recorridos Guardados
+|Usuario|
+start
+:Ir a perfil;
+
+|Sistema|
+:Mostrar opciones
+de perfil;
+
+|Usuario|
+:Seleccionar recorridos
+guardados;
+
+|Sistema|
+:Solicitar recorridos
+guardados del usuario;
+
+|DB|
+:Obtener recorridos
+guardados;
+
+|Sistema|
+if (¿Listado vacío?) then (Sí)
+|Sistema|
+:Mostrar mensaje
+sin recorridos guardados;
+else (No)
+|Sistema|
+:Mostrar listado de
+recorridos guardados;
+endif
+
+stop
+@enduml

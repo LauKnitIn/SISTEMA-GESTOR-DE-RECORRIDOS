@@ -1,0 +1,30 @@
+@startuml Secuencia - Eliminar Recorrido
+autonumber
+actor Administrador
+participant Sistema
+database DB
+
+Administrador -> Sistema : accederPanelAdministracion()
+Sistema --> Administrador : mostrarOpcionesPanel()
+Administrador -> Sistema : seleccionarListadoRecorridos()
+Sistema -> DB : obtenerRecorridos()
+DB --> Sistema : listaRecorridos
+Sistema --> Administrador : mostrarListadoRecorridos()
+Administrador -> Sistema : seleccionarRecorridoAEliminar(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Administrador : mostrarInformacionRecorrido()
+Sistema --> Administrador : solicitarConfirmacionEliminacion()
+alt Confirmar eliminación
+    Administrador -> Sistema : confirmarEliminacion()
+    Sistema -> DB : eliminarRecorrido(idRecorrido)
+    DB --> Sistema : confirmacion
+    Sistema -> DB : obtenerRecorridos()
+    DB --> Sistema : listaActualizada
+    Sistema --> Administrador : mostrarListadoActualizado()
+    Sistema --> Administrador : mostrarConfirmacionEliminacion()
+else Cancelar
+    Administrador -> Sistema : cancelarEliminacion()
+    Sistema --> Administrador : operacionCancelada()
+end
+@enduml

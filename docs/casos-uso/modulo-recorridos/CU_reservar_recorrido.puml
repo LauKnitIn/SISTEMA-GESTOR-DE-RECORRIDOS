@@ -1,0 +1,43 @@
+@startuml Casos de Uso - Reservar Recorrido
+left to right direction
+
+actor "Usuario Autenticado" as UA
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Reservar recorrido" as UC1
+  usecase "Seleccionar recorrido" as UC2
+  usecase "Ver información\ndel recorrido" as UC3
+  usecase "Seleccionar fecha\ndisponible" as UC4
+  usecase "Ingresar número\nde personas" as UC5
+  usecase "Calcular costo\nsegún tarifas" as UC6
+  usecase "Verificar autenticación" as UC7
+  usecase "Confirmar reserva" as UC8
+  usecase "Registrar reserva" as UC9
+  usecase "Cancelar reserva" as UC10
+  usecase "Iniciar sesión" as UC11
+}
+
+UA  --> UC1
+
+UC1 .> UC2  : <<Include>>
+UC1 .> UC3  : <<Include>>
+UC1 .> UC4  : <<Include>>
+UC1 .> UC5  : <<Include>>
+UC1 .> UC6  : <<Include>>
+UC1 .> UC7  : <<Include>>
+UC1 .> UC8  : <<Include>>
+UC1 .> UC9  : <<Include>>
+UC10 .> UC1 : <<Extend>>
+UC11 .> UC1 : <<Include>>
+
+UC2  -[hidden]-> UC3
+UC3  -[hidden]-> UC4
+UC4  -[hidden]-> UC5
+UC5  -[hidden]-> UC6
+UC6  -[hidden]-> UC7
+UC7  -[hidden]-> UC8
+UC8  -[hidden]-> UC9
+UC9  -[hidden]-> UC10
+UC10 -[hidden]-> UC11
+
+@enduml

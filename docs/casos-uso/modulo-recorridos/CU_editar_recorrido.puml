@@ -1,0 +1,56 @@
+@startuml Casos de Uso - Editar Recorrido
+left to right direction
+
+actor "Administrador" as Admin
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Editar recorrido" as UC1
+  usecase "Acceder al panel\nde administración" as UC2
+  usecase "Seleccionar recorrido\na editar" as UC3
+  usecase "Ver información\nactual del recorrido" as UC4
+  usecase "Modificar nombre" as UC5
+  usecase "Modificar descripción\ny duración estimada" as UC6
+  usecase "Modificar lugares\nturísticos asignados" as UC7
+  usecase "Modificar itinerario" as UC8
+  usecase "Modificar encuentro" as UC9
+  usecase "Modificar costo y\ntarifas" as UC10
+  usecase "Modificar fotos\ndel recorrido" as UC11
+  usecase "Modificar recomendaciones\ngenerales" as UC12
+  usecase "Validar datos\nmodificados" as UC14
+  usecase "Guardar cambios" as UC15
+  usecase "Cancelar edición" as UC16
+}
+
+Admin --> UC1
+
+UC1 .> UC2  : <<Include>>
+UC1 .> UC3  : <<Include>>
+UC1 .> UC4  : <<Include>>
+UC1 .> UC14 : <<Include>>
+UC1 .> UC15 : <<Include>>
+UC5  .> UC1 : <<Extend>>
+UC6  .> UC1 : <<Extend>>
+UC7  .> UC1 : <<Extend>>
+UC8  .> UC1 : <<Extend>>
+UC9  .> UC1 : <<Extend>>
+UC10 .> UC1 : <<Extend>>
+UC11 .> UC1 : <<Extend>>
+UC12 .> UC1 : <<Extend>>
+
+UC16 .> UC1 : <<Extend>>
+
+UC2  -[hidden]-> UC3
+UC3  -[hidden]-> UC4
+UC4  -[hidden]-> UC5
+UC5  -[hidden]-> UC6
+UC6  -[hidden]-> UC7
+UC7  -[hidden]-> UC8
+UC8  -[hidden]-> UC9
+UC9  -[hidden]-> UC10
+UC10 -[hidden]-> UC11
+UC11 -[hidden]-> UC12
+UC13 -[hidden]-> UC14
+UC14 -[hidden]-> UC15
+UC15 -[hidden]-> UC16
+
+@enduml

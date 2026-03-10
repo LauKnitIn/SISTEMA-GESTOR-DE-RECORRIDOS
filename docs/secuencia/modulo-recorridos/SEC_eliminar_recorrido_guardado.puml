@@ -1,0 +1,30 @@
+@startuml Secuencia - Eliminar Recorrido Guardado
+autonumber
+actor Usuario
+participant Sistema
+database DB
+
+Usuario -> Sistema : irAPerfil()
+Sistema --> Usuario : mostrarOpcionesPerfil()
+Usuario -> Sistema : abrirRecorridosGuardados()
+Sistema -> DB : obtenerRecorridosGuardados(idUsuario)
+DB --> Sistema : listaRecorridosGuardados
+Sistema --> Usuario : mostrarListadoRecorridosGuardados()
+Usuario -> Sistema : seleccionarRecorridoAEliminar(idRecorrido)
+Sistema -> DB : obtenerDatosRecorrido(idRecorrido)
+DB --> Sistema : datosRecorrido
+Sistema --> Usuario : mostrarDetalleRecorrido()
+Sistema --> Usuario : solicitarConfirmacionEliminacion()
+alt Confirmar eliminación
+    Usuario -> Sistema : confirmarEliminacion()
+    Sistema -> DB : eliminarRecorridoGuardado(idUsuario, idRecorrido)
+    DB --> Sistema : confirmacion
+    Sistema -> DB : obtenerRecorridosGuardados(idUsuario)
+    DB --> Sistema : listaActualizada
+    Sistema --> Usuario : mostrarListadoActualizado()
+    Sistema --> Usuario : mostrarConfirmacionEliminacion()
+else Cancelar
+    Usuario -> Sistema : cancelarEliminacion()
+    Sistema --> Usuario : operacionCancelada()
+end
+@enduml

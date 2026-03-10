@@ -1,0 +1,29 @@
+@startuml Secuencia - Crear Recorrido
+autonumber
+actor Administrador
+participant Sistema
+database DB
+
+Administrador -> Sistema : accederPanelAdministracion()
+Sistema --> Administrador : mostrarOpcionesPanel()
+Administrador -> Sistema : seleccionarCrearRecorrido()
+Sistema --> Administrador : mostrarFormularioCreacion()
+Administrador -> Sistema : ingresarNombre(nombre)
+Administrador -> Sistema : ingresarDescripcionYDuracion(descripcion, duracion)
+Administrador -> Sistema : asignarLugaresTuristicos(lugares)
+Administrador -> Sistema : definirItinerario(itinerario)
+Administrador -> Sistema : ingresarEncuentro(detalle)
+Administrador -> Sistema : asignarCostoYTarifas(costo, tarifas)
+Administrador -> Sistema : agregarFotos(fotos)
+Administrador -> Sistema : ingresarRecomendaciones(recomendaciones)
+Administrador -> Sistema : guardarRecorrido()
+Sistema -> Sistema : validarDatos()
+alt Datos inválidos
+    Sistema --> Administrador : mostrarErroresValidacion()
+    Administrador -> Sistema : corregirDatos()
+    Sistema -> Sistema : validarDatos()
+end
+Sistema -> DB : guardarNuevoRecorrido(datosRecorrido)
+DB --> Sistema : confirmacion
+Sistema --> Administrador : mostrarConfirmacionCreacion()
+@enduml

@@ -1,0 +1,40 @@
+@startuml Casos de Uso - Ver Información del Recorrido
+left to right direction
+
+actor "Usuario sin\nAutenticar" as USin
+actor "Usuario Autenticado" as UA
+actor "Administrador" as Admin
+actor "Usuario" as User
+
+UA --|> User
+Admin --|> User
+USin --|> User
+
+rectangle "Sistema de Gestión de Recorridos Turísticos" {
+  usecase "Ver descripción\ndel recorrido" as UC1
+  usecase "Ver nombre" as UC2
+  usecase "Ver fotos" as UC3
+  usecase "Ver costo y tarifas\npor categoria" as UC6
+  usecase "Consultar itinerario" as UC7
+  usecase "Consultar punto\n de encuentro" as UC8
+  usecase "Ver recomendaciones\ngenerales" as UC9
+  usecase "Ver reseñas" as UC10
+}
+
+User  --> UC1
+
+UC1 .> UC2  : <<Include>>
+UC1 .> UC3  : <<Include>>
+UC1 .> UC6  : <<Include>>
+UC1 .> UC7  : <<Include>>
+UC1 .> UC8  : <<Include>>
+UC1 .> UC9  : <<Include>>
+UC1 .> UC10 : <<Include>>
+
+UC2  -[hidden]-> UC3
+UC6  -[hidden]-> UC7
+UC7  -[hidden]-> UC8
+UC8  -[hidden]-> UC9
+UC9  -[hidden]-> UC10
+
+@enduml

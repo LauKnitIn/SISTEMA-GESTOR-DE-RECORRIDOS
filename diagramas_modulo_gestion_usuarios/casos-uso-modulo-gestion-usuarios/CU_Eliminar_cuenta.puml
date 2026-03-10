@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+
+actor "Usuario autenticado" as authUser
+
+rectangle "Sistema de gestión de recorridos turísticos" {
+  usecase "Eliminar cuenta" as UC_eliminar
+  usecase "Confirmar acción" as UC_confirmar
+  usecase "Eliminar datos del usuario" as UC_borrar
+  usecase "Cancelar eliminación" as UC_cancelar
+
+  UC_eliminar --> UC_confirmar : <<include>>
+  UC_eliminar --> UC_borrar : <<include>>
+  UC_eliminar --> UC_cancelar : <<include>>
+}
+
+authUser --> UC_eliminar
+authUser --> UC_confirmar
+authUser --> UC_cancelar
+@enduml

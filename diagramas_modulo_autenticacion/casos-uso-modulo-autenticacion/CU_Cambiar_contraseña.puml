@@ -13,12 +13,15 @@ rectangle "Sistema de gestión de recorridos turísticos" {
   usecase "Ingresar nueva contraseña" as UC1
   usecase "Validar nueva contraseña" as UC2
   usecase "Mostrar error por nueva contraseña inválida" as UC3
+  usecase "Ingresar confirmación de nueva contraseña" as UC4
 
   UC_main --> UC1 : <<include>>
   UC_main --> UC2 : <<include>>
   UC_main --> UC3 : <<include>>
+  UC_main --> UC4 : <<include>>
 }
 
 Usuario --> UC_main
 Usuario --> UC1
+Usuario --> UC4
 @enduml

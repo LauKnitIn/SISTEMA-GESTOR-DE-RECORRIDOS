@@ -1,25 +1,35 @@
 @startuml
-title Crear Cuenta
+actor "Usuario" as user
+participant "Sistema" as system
+participant "Base de Datos" as db
 
-actor "Usuario sin autenticar"  as Usuario
-participant "Sistema" as Sistema
-participant "Base de Datos" as BD
+user -> system: Accede a pantalla de inicio, clic en botón usuario y selecciona "Iniciar sesión"
+system -> user: Muestra pantalla de registro e inicio de sesión
 
-Usuario -> Sistema : 1. Accede al módulo de autenticación
-Sistema --> Usuario : 2. Muestra formulario de registro
-Usuario -> Sistema : 3. Ingresa datos (nombre, correo, contraseña, documento, celular)
-Sistema -> Sistema : 4. Valida datos ingresados
-
-alt Datos inválidos
-    Sistema --> Usuario : 5. Muestra error por datos inválidos
-else Datos válidos
-    Sistema -> BD : 6. Verifica correo no registrado
-    BD --> Sistema : 7. Resultado verificación
-    alt Correo ya existe
-        Sistema --> Usuario : 8. Muestra error por correo existente
-    else Correo disponible
-        Sistema -> BD : 9. Guarda información del usuario
-        Sistema --> Usuario : 10. Notifica registro exitoso
-    end
+loop while no registrado
+  user -> system: Ingresa nombre completo
+  user -> system: Ingresa correo electrónico
+  user -> system: Ingresa celular
+  user -> system: Ingresa documento
+  user -> system: Ingresa contraseña
+  user -> system: Ingresa confirmar contraseña
+  user -> system: Hace clic en "Registrarse"
+  
+  system -> system: Valida campos obligatorios y formatos básicos
+  
+  system -> db: Consulta si el correo ya existe
+  db --> system: Retorna resultado (existe/no existe)
+  
+  alt Correo ya existe
+    system -> user: Muestra error "El correo electrónico ya está"
+  else Datos inválidos (formato, contraseñas, etc.)
+    system -> user: Muestra errores específicos
+  else Campos válidos y email único
+    system -> db: Almacena los datos del nuevo usuario
+    db --> system: Confirma almacenamiento
+    system -> user: Muestra mensaje "Cuenta creada con éxito"
+    system -> user: Redirige a pantalla de Perfil de usuario
+    break
+  end
 end
 @enduml

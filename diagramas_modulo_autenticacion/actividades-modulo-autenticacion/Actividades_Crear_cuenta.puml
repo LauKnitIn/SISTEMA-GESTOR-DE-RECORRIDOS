@@ -1,43 +1,70 @@
 @startuml
-title Crear Cuenta
-
-|Usuario sin autenticar|
+|Usuario|
 start
-:Accede al módulo de autenticación;
+:Accede a pantalla de inicio;
+:Hace clic en botón usuario;
+:Selecciona "Iniciar sesión";
 
 |Sistema|
-:Muestra formulario de registro;
+:Muestra pantalla de registro e inicio de sesión;
 
 |Usuario|
-:Ingresa datos 
-(nombre, correo, contraseña,
-documento, celular);
+:Ingresa nombre completo;
+:Ingresa correo electrónico;
+:Ingresa celular;
+:Ingresa documento;
+:Ingresa contraseña;
+:Ingresa confirmar contraseña;
+
+repeat
+:Hace clic en "Registrarse";
 
 |Sistema|
-:Validar datos ingresados;
+:Valida campos obligatorios y formatos\n(contraseña fuerte, coincidencia.);
 
-if (¿Datos válidos?) then (No)
-  :Mostrar error por datos inválidos;
-  stop
-else (Sí)
+if (¿Campos con errores de formato?) then (sí)
 
-  |Base de Datos|
-  :Verificar correo no registrado;
+|Sistema|
+:Muestra errores específicos\n(campo vacío, formato inválido,\ncontraseña débil, no coinciden);
 
-  |Sistema|
-  if (¿Correo ya existe?) then (Sí)
-    :Mostrar error por correo existente;
-    stop
-  else (No)
+|Usuario|
+:Corrige los datos según errores;
 
-    |Base de Datos|
-    :Guardar información del usuario;
+else (formato correcto)
 
-    |Sistema|
-    :Notificar registro exitoso;
+|Sistema|
+:Consulta existencia del correo;
 
-  endif
-endif
+|Base de Datos|
+:Busca correo en la base de datos;
+:Retorna resultado;
+
+|Sistema|
+if (¿Correo ya existe?) then (sí)
+
+:Muestra error\n"El correo electrónico ya está registrado";
+
+|Usuario|
+:Modifica el correo;
+
+else (correo único)
+
+|Sistema|
+:Envía datos para almacenar;
+
+|Base de Datos|
+:Almacena nuevo usuario;
+:Confirma almacenamiento;
+
+|Sistema|
+:Muestra mensaje\n"Cuenta creada con éxito";
+:Redirige a pantalla de Perfil de usuario;
 
 stop
+
+endif
+endif
+
+repeat while (¿Se requiere reintentar?) is (sí)
+
 @enduml

@@ -1,21 +1,26 @@
 @startuml
-title Cambiar Contraseña
-
-actor "Usuario autenticado" as Usuario
-participant "Sistema" as Sistema
+actor Usuario
+participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> Sistema: 1. Selecciona opción "Cambiar contraseña"
-Sistema --> Usuario: 2. Muestra formulario de cambio
-Usuario -> Sistema: 3. Ingresa nueva contraseña
-Sistema -> Sistema: 4. Valida criterios de nueva contraseña
-    alt nueva contraseña no cumple requisitos
-        Sistema --> Usuario: Muestra error y solicita corrección
-        Usuario -> Sistema: 4. Reingresa nueva contraseña
-    else nueva contraseña válida
-        Usuario -> Sistema: 5. Confirma el cambio
-        Sistema -> BD: 6. Actualiza contraseña
-        BD --> Sistema: Confirmación
-        Sistema --> Usuario: 7. Notifica cambio exitoso
-    end
+Usuario -> S: Desde perfil, hace clic en "Cambiar contraseña"
+S -> Usuario: Redirige a pantalla "Cambiar contraseña"
+
+loop while contraseña no válida
+  Usuario -> S: Ingresa nueva contraseña
+  Usuario -> S: Ingresa confirmación
+  Usuario -> S: Hace clic en "Actualizar contraseña"
+  
+  S -> S: Valida política (mínimo 8 caracteres)
+  
+  alt validación falla
+    S -> Usuario: Muestra error específico (longitud o no coinciden)
+  else validación ok
+    S -> BD: Actualiza la contraseña
+    BD --> S: Confirmación
+    S -> Usuario: Muestra mensaje "Operación exitosa"
+    S -> Usuario: Redirige a pantalla de perfil
+    break
+  end
+end
 @enduml

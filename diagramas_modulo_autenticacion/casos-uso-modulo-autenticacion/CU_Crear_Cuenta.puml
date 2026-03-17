@@ -1,25 +1,31 @@
 @startuml
 left to right direction
-
-actor "Usuario sin autenticar" as UsuarioNoAuth
-
+actor "Usuario sin autenticar" as usuario
 rectangle "Sistema de gestión de recorridos turísticos" {
-
-    usecase "Ingresar datos" as UC1
-    usecase "Validar datos ingresados" as UC2
-    usecase "Crear cuenta" as UC3
-    usecase "Verificar correo no registrado" as UC4
-    usecase "Mostrar error por datos inválidos" as UC5
-    usecase "Mostrar error por correo existente" as UC6
+  usecase "Crear cuenta" as UC1
+  usecase "Ingresar confirmación de contraseña" as UC2
+  usecase "Ingresar contraseña" as UC3
+  usecase "Ingresar número de celular" as UC4
+  usecase "Ingresar correo electrónico" as UC5
+  usecase "Ingresar número de documento" as UC6
+  usecase "Validar datos ingresados" as UC7
+  usecase "Ingresar nombre completo" as UC8
+  usecase "Notificar registro exitoso" as UC9
+  usecase "Mostrar error por datos inválidos" as UC10
+  usecase "Verificar correo no registrado" as UC11
+  usecase "Mostrar error por correo existente" as UC12
 }
 
-UsuarioNoAuth --> UC1
-UsuarioNoAuth --> UC3
-
-UC3 --> UC1 : <<include>>
-UC3 --> UC2 : <<include>>
-UC3 --> UC4 : <<include>>
-UC3 --> UC5 : <<include>>
-UC3 --> UC6 : <<include>>
-
+usuario --> UC1
+UC1 ..> UC2 : <<include>>
+UC1 ..> UC3 : <<include>>
+UC1 ..> UC4 : <<include>>
+UC1 ..> UC5 : <<include>>
+UC1 ..> UC6 : <<include>>
+UC1 ..> UC7 : <<include>>
+UC1 ..> UC8 : <<include>>
+UC7 ..> UC9 : <<include>>
+UC7 ..> UC10 : <<include>>
+UC5 ..> UC11 : <<include>>
+UC7 ..> UC12 : <<include>>
 @enduml

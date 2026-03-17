@@ -1,24 +1,71 @@
 @startuml
-title Iniciar Sesión
-
 |Usuario|
 start
-:1. Accede al módulo de autenticación;
+:Desde pantalla de inicio, hace clic en ícono usuario y selecciona "Iniciar sesión";
 
 |Sistema|
-:2. Muestra formulario de ingreso;
+:Muestra formulario de ingreso;
 
 |Usuario|
-:3. Ingresa correo y contraseña;
-:4. Selecciona "Iniciar sesión";
+:Ingresa correo;
+:Ingresa contraseña;
+
+repeat
+
+|Usuario|
+:Hace clic en "Iniciar sesión";
 
 |Sistema|
-:5. Valida credenciales;
-if (¿Credenciales válidas?) then (sí)
-  :6. Permite acceso al sistema;
-  stop
+:Valida campos no vacíos;
+
+if (¿Campos vacíos?) then (sí)
+
+:Muestra error de campos obligatorios;
+
+|Usuario|
+:Corrige datos;
+
 else (no)
-  :7. Muestra mensaje de error;
-  stop
+
+|Sistema|
+:Busca usuario por correo en BD;
+
+|Base de Datos|
+:Realiza búsqueda;
+:Retorna resultado;
+
+|Sistema|
+if (¿Correo existe?) then (no)
+
+:Muestra "El correo ingresado no está registrado";
+
+|Usuario|
+:Corrige correo;
+
+else (sí)
+
+|Sistema|
+:Verifica contraseña;
+
+if (¿Contraseña correcta?) then (no)
+
+:Muestra "Contraseña incorrecta";
+
+|Usuario|
+:Corrige contraseña;
+
+else (sí)
+
+|Sistema|
+:Establece sesión;
+:Redirige a pantalla de recorridos turísticos;
+
+stop
+
 endif
+endif
+endif
+
+repeat while (Reintentar) is (sí)
+
 @enduml

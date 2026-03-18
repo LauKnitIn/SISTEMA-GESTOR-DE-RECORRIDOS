@@ -1,0 +1,45 @@
+@startuml
+title Actualizar información personal
+
+|Usuario|
+start
+:Acceder al perfil del usuario;
+
+|Sistema|
+:Solicitar datos actuales;
+
+|Base de Datos|
+:Consultar datos del usuario;
+
+|Sistema|
+:Mostrar datos actuales;
+
+|Usuario|
+:Seleccionar campo a actualizar;
+:Ingresar datos;
+:Confirmar cambios;
+
+|Sistema|
+:Validar información ingresada;
+
+if (¿Datos válidos?) then (Sí)
+
+  |Sistema|
+  :Solicitar actualización de datos;
+
+  |Base de Datos|
+  :Guardar cambios;
+
+  |Sistema|
+  :Notificar actualización exitosa;
+  stop
+
+else (No)
+
+  |Sistema|
+  :Mostrar error por datos inválidos;
+  stop
+
+endif
+
+@enduml

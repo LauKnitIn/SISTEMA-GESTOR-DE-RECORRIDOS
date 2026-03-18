@@ -1,0 +1,21 @@
+@startuml
+|Usuario|
+start
+:Selecciona "Mis reservas";
+
+|Sistema|
+:Recupera reservas del usuario desde BD;
+
+|Base de Datos|
+:Busca reservas del usuario;
+:Retorna lista;
+
+|Sistema|
+if (¿Hay reservas?) then (sí)
+  :Muestra lista de reservas;
+else (no)
+  :Muestra mensaje "No tiene reservas";
+endif
+
+stop
+@enduml

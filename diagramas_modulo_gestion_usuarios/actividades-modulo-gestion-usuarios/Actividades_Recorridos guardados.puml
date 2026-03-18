@@ -1,0 +1,22 @@
+@startuml
+|Usuario|
+start
+:Selecciona "Mis recorridos guardados";
+
+|Sistema|
+:Recupera recorridos guardados del usuario desde BD;
+
+|Base de Datos|
+:Busca recorridos guardados del usuario;
+:Retorna lista;
+
+|Sistema|
+if (¿Hay recorridos?) then (sí)
+  :Muestra lista de recorridos;
+else (no)
+  :Muestra mensaje "No hay recorridos guardados";
+endif
+
+|Usuario|
+stop
+@enduml

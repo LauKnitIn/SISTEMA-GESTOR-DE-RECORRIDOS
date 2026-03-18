@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor Usuario
+actor "Usuario autenticado" as authUser
+actor Administrador
+
+Usuario <|-- authUser
+Usuario <|-- Administrador
+
+rectangle "Sistema de gestión de recorridos turísticos" {
+  usecase "Actualizar información personal" as UC_actualizar
+  usecase "Ingresar datos" as UC_ingresar
+  usecase "Validar datos ingresados" as UC_validar
+  usecase "Mostrar error por datos inválidos" as UC_error
+
+  UC_actualizar --> UC_ingresar : <<include>>
+  UC_actualizar --> UC_validar : <<include>>
+  UC_actualizar --> UC_error : <<include>>
+}
+
+note right of UC_actualizar
+  Información como nombre y documento
+  no se puede actualizar
+end note
+
+Usuario --> UC_actualizar
+@enduml

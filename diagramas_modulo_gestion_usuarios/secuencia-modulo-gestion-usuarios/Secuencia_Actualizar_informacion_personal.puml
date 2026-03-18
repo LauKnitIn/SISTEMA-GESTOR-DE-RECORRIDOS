@@ -1,0 +1,26 @@
+@startuml
+title Actualizar información personal
+actor Usuario
+participant "Sistema" as Sistema
+participant "Base de Datos" as BD
+
+Usuario -> Sistema: 1. Acceder al perfil
+Sistema -> BD: 2. Obtener datos actuales
+BD --> Sistema: datosUsuario
+Sistema --> Usuario: 3. Muestra datos actuales
+Usuario -> Sistema: 4. Selecciona campo a actualizar
+
+loop Hasta que los datos sean válidos
+  Usuario -> Sistema: 5. Ingresa datos en campos permitidos
+  Sistema -> Sistema: 6. Valida información ingresada
+  alt Datos válidos
+    Usuario -> Sistema: 7. Confirma cambios
+    Sistema -> BD: 8. Guarda cambios realizados
+    BD --> Sistema: confirmación
+    Sistema --> Usuario: 9. Notifica actualización exitosa
+    break
+  else Datos inválidos
+    Sistema --> Usuario: Solicita corrección
+  end
+end
+@enduml

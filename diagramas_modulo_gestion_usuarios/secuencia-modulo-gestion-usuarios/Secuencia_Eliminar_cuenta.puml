@@ -1,0 +1,21 @@
+@startuml
+title Eliminar Cuenta
+
+actor "Usuario autenticado" as Usuario
+participant "Sistema" as Sistema
+participant "Base de Datos" as BD
+
+Usuario -> Sistema: 1. Selecciona opción "Eliminar cuenta"
+Sistema --> Usuario: 2. Solicita confirmación
+
+alt Usuario confirma
+    Usuario -> Sistema: 3. Confirma eliminación
+    Sistema -> BD: 4. Elimina datos del usuario
+    BD --> Sistema: Confirmación
+    Sistema --> Usuario: 5. Notifica eliminación exitosa
+    Sistema -> Usuario: 6. Finaliza sesión
+else Usuario cancela
+    Usuario -> Sistema: Cancela operación
+    Sistema --> Usuario: No elimina cuenta
+end
+@enduml

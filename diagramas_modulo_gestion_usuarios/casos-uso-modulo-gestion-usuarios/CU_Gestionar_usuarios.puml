@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+actor "Usuario autenticado" as authUser
+actor Administrador
+
+Usuario <|-- authUser
+Usuario <|-- Administrador
+
+rectangle "Sistema de gestión de recorridos turísticos" {
+  usecase "Eliminar cuenta" as UC1
+  usecase "Actualizar información personal" as UC2
+  usecase "Consultar perfil" as UC3
+  usecase "Ver recorridos guardados" as UC4
+  usecase "Ver reservas" as UC5
+  
+  UC3 --> UC4 : <<include>>
+  UC3 --> UC5 : <<include>>
+}
+
+Usuario --> UC1
+Usuario --> UC2
+Usuario --> UC3
+@enduml

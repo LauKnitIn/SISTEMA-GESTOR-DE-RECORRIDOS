@@ -1,0 +1,10 @@
+@startuml
+actor Usuario
+participant "Sistema" as S
+participant "Base de Datos" as BD
+
+Usuario -> S: Accede al perfil mediante icono de usuario
+S -> BD: Recupera datos del usuario
+BD --> S: Retorna datos
+S -> Usuario: Muestra datos en pantalla
+@enduml

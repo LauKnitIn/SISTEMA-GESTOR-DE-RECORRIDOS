@@ -1,0 +1,18 @@
+@startuml
+|Usuario|
+start
+:Accede al perfil mediante icono de usuario;
+
+|Sistema|
+:Recupera datos del usuario desde BD;
+
+|Base de Datos|
+:Busca datos del usuario;
+:Retorna datos;
+
+|Sistema|
+:Muestra datos en pantalla;
+
+|Usuario|
+stop
+@enduml

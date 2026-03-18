@@ -3,10 +3,10 @@ actor Usuario
 participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> S: Desde pantalla de perfil, hace clic en ícono de usuario
-S -> Usuario: Muestra opción "Cerrar sesión"
-Usuario -> S: Selecciona "Cerrar sesión"
-S -> BD: Invalida sesión del usuario
-BD --> S: Confirmación
-S -> Usuario: Redirige a pantalla de inicio
+Usuario -> S: 1.Desde pantalla de perfil, hace clic en ícono de usuario
+S -> Usuario: 2.Muestra opción "Cerrar sesión"
+Usuario -> S: 3.Selecciona "Cerrar sesión"
+S -> BD: 4.Invalida sesión del usuario
+BD --> S: 5.Confirmación
+S -> Usuario: 6.Redirige a pantalla de inicio
 @enduml

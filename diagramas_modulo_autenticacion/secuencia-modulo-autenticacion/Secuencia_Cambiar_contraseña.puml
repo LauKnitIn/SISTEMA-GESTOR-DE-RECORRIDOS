@@ -3,23 +3,23 @@ actor Usuario
 participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> S: Desde perfil, hace clic en "Cambiar contraseña"
-S -> Usuario: Redirige a pantalla "Cambiar contraseña"
+Usuario -> S: 1. Desde perfil, hace clic en "Cambiar contraseña"
+S -> Usuario: 2. Redirige a pantalla "Cambiar contraseña"
 
 loop while contraseña no válida
-  Usuario -> S: Ingresa nueva contraseña
-  Usuario -> S: Ingresa confirmación
-  Usuario -> S: Hace clic en "Actualizar contraseña"
+  Usuario -> S: 3. Ingresa nueva contraseña
+  Usuario -> S: 4. Ingresa confirmación
+  Usuario -> S: 5. Hace clic en "Actualizar contraseña"
   
-  S -> S: Valida política (mínimo 8 caracteres)
+  S -> S: 6. Valida política (mínimo 8 caracteres)
   
   alt validación falla
-    S -> Usuario: Muestra error específico (longitud o no coinciden)
+    S -> Usuario: 7. Muestra error específico (longitud o no coinciden)
   else validación ok
-    S -> BD: Actualiza la contraseña
-    BD --> S: Confirmación
-    S -> Usuario: Muestra mensaje "Operación exitosa"
-    S -> Usuario: Redirige a pantalla de perfil
+    S -> BD: 7. Actualiza la contraseña
+    BD --> S: 8. Confirmación
+    S -> Usuario: 9. Muestra mensaje "Operación exitosa"
+    S -> Usuario: 10. Redirige a pantalla de perfil
     break
   end
 end

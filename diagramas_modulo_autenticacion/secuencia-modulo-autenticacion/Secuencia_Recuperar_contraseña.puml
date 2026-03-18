@@ -3,42 +3,42 @@ actor Usuario
 participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> S: En pantalla de inicio sesión, hace clic en "¿Olvidó su contraseña?"
-S -> Usuario: Muestra modal con campo de correo
+Usuario -> S: 1. En pantalla de inicio sesión, hace clic en "¿Olvidó su contraseña?"
+S -> Usuario: 2. Muestra modal con campo de correo
 
 loop while correo no válido
-  Usuario -> S: Ingresa correo y hace clic en "Enviar código"
-  S -> BD: Verifica si el correo existe
-  BD --> S: Retorna resultado
+  Usuario -> S: 3. Ingresa correo y hace clic en "Enviar código"
+  S -> BD: 4. Verifica si el correo existe
+  BD --> S: 5. Retorna resultado
   alt correo no registrado
-    S -> Usuario: Muestra error "Correo no registrado"
+    S -> Usuario: 6. Muestra error "Correo no registrado"
   else correo existe
     break
   end
 end
 
-S -> S: Envía código de verificación al correo (simulado)
-S -> Usuario: Muestra modal para ingreso de código
+S -> S: 7. Envía código de verificación al correo (simulado)
+S -> Usuario: 8. Muestra modal para ingreso de código
 
-Usuario -> S: Ingresa código y hace clic en "Ingresar"
-S -> S: Valida el código
+Usuario -> S: 9. Ingresa código y hace clic en "Ingresar"
+S -> S: 10. Valida el código
 alt código inválido
-  S -> Usuario: Muestra error "Código inválido"
-  S -> Usuario: Redirige a pantalla de inicio de sesión
+  S -> Usuario: 11. Muestra error "Código inválido"
+  S -> Usuario: 12. Redirige a pantalla de inicio de sesión
 else código válido
-  S -> Usuario: Redirige a pantalla "Cambiar contraseña"
+  S -> Usuario: 13. Redirige a pantalla "Cambiar contraseña"
   loop while contraseña no válida
-    Usuario -> S: Ingresa nueva contraseña y confirmación, clic "Actualizar"
-    S -> S: Valida política (mínimo 8 caracteres y coincidencia)
+    Usuario -> S: 14. Ingresa nueva contraseña y confirmación, clic "Actualizar"
+    S -> S: 15. Valida política (mínimo 8 caracteres y coincidencia)
     alt validación falla
-      S -> Usuario: Muestra error correspondiente
+      S -> Usuario: 16. Muestra error correspondiente
     else validación ok
       break
     end
   end
-  S -> BD: Actualiza la contraseña
-  BD --> S: Confirmación
-  S -> Usuario: Muestra mensaje "Operación exitosa"
-  S -> Usuario: Redirige a pantalla de perfil
+  S -> BD: 17. Actualiza la contraseña
+  BD --> S: 18. Confirmación
+  S -> Usuario: 19. Muestra mensaje "Operación exitosa"
+  S -> Usuario: 20. Redirige a pantalla de perfil
 end
 @enduml

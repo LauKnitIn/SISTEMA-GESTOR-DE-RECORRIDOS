@@ -1,0 +1,24 @@
+@startuml
+|Usuario|
+start
+:Desde pantalla de perfil, hace clic en ícono de usuario;
+
+|Sistema|
+:Muestra opción "Cerrar sesión";
+
+|Usuario|
+:Selecciona "Cerrar sesión";
+
+|Sistema|
+:Solicita invalidar sesión en Base de Datos;
+
+|Base de Datos|
+:Invalida sesión
+:Confirma operación;
+
+|Sistema|
+:Redirige a pantalla de inicio;
+
+|Usuario|
+stop
+@enduml

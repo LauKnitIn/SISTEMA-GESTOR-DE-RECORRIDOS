@@ -3,12 +3,12 @@ actor Usuario
 participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> S: Selecciona "Mis recorridos guardados"
-S -> BD: Recupera recorridos guardados del usuario
-BD --> S: Retorna lista de recorridos
+Usuario -> S: 1.Selecciona "Mis recorridos guardados"
+S -> BD: 2.Recupera recorridos guardados del usuario
+BD --> S: 3.Retorna lista de recorridos
 alt hay recorridos
-  S -> Usuario: Muestra lista de recorridos
+  S -> Usuario: 4.Muestra lista de recorridos
 else no hay
-  S -> Usuario: Muestra mensaje "No hay recorridos guardados"
+  S -> Usuario: 4.Muestra mensaje "No hay recorridos guardados"
 end
 @enduml

@@ -3,12 +3,12 @@ actor Usuario
 participant "Sistema" as S
 participant "Base de Datos" as BD
 
-Usuario -> S: Selecciona "Mis reservas"
-S -> BD: Recupera reservas del usuario
-BD --> S: Retorna lista de reservas
+Usuario -> S: 1.Selecciona "Mis reservas"
+S -> BD: 2.Recupera reservas del usuario
+BD --> S: 3.Retorna lista de reservas
 alt hay reservas
-  S -> Usuario: Muestra lista de reservas
+  S -> Usuario: 4.Muestra lista de reservas
 else no hay reservas
-  S -> Usuario: Muestra mensaje "No tiene reservas"
+  S -> Usuario: 4.Muestra mensaje "No tiene reservas"
 end
 @enduml

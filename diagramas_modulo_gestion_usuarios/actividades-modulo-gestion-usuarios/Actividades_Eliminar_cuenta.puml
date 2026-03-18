@@ -1,5 +1,5 @@
 @startuml
-|Usuario autenticado|
+|Usuario|
 start
 :Selecciona opción "Eliminar cuenta";
 

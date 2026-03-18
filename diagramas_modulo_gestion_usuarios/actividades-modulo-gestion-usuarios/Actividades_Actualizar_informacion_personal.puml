@@ -1,5 +1,4 @@
 @startuml
-title Actualizar información personal
 
 |Usuario|
 start

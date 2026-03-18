@@ -1,5 +1,4 @@
 @startuml
-title Actualizar información personal
 actor Usuario
 participant "Sistema" as Sistema
 participant "Base de Datos" as BD

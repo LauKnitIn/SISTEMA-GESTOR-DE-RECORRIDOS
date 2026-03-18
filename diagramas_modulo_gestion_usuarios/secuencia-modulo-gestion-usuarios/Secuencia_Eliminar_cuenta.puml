@@ -1,5 +1,4 @@
 @startuml
-title Eliminar Cuenta
 
 actor "Usuario autenticado" as Usuario
 participant "Sistema" as Sistema

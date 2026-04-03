@@ -1,0 +1,70 @@
+@startuml
+|Usuario sin autenticar|
+start
+:Accede a pantalla de inicio;
+:Hace clic en botón usuario;
+:Selecciona "Iniciar sesión";
+
+|Sistema|
+:Muestra pantalla de registro e inicio de sesión;
+
+|Usuario sin autenticar|
+:Ingresa nombre completo;
+:Ingresa correo electrónico;
+:Ingresa celular;
+:Ingresa documento;
+:Ingresa contraseña;
+:Ingresa confirmar contraseña;
+
+repeat
+:Hace clic en "Registrarse";
+
+|Sistema|
+:Valida campos obligatorios y formatos\n(contraseña fuerte, coincidencia.);
+
+if (¿Campos con errores de formato?) then (sí)
+
+|Sistema|
+:Muestra errores específicos\n(campo vacío, formato inválido,\ncontraseña débil, no coinciden);
+
+|Usuario sin autenticar|
+:Corrige los datos según errores;
+
+else (formato correcto)
+
+|Sistema|
+:Consulta existencia del correo;
+
+|Base de Datos|
+:Busca correo en la base de datos;
+:Retorna resultado;
+
+|Sistema|
+if (¿Correo ya existe?) then (sí)
+
+:Muestra error\n"El correo electrónico ya está registrado";
+
+|Usuario sin autenticar|
+:Modifica el correo;
+
+else (correo único)
+
+|Sistema|
+:Envía datos para almacenar;
+
+|Base de Datos|
+:Almacena nuevo usuario;
+:Confirma almacenamiento;
+
+|Sistema|
+:Muestra mensaje\n"Cuenta creada con éxito";
+:Redirige a pantalla de Perfil de usuario;
+
+stop
+
+endif
+endif
+
+repeat while (¿Se requiere reintentar?) is (sí)
+
+@enduml

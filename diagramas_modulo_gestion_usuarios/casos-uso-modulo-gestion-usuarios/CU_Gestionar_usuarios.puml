@@ -3,6 +3,7 @@ left to right direction
 
 actor "Usuario autenticado" as authUser
 actor Administrador
+actor "Usuario sin autenticar" as NauthUser
 
 Usuario <|-- authUser
 Usuario <|-- Administrador
@@ -13,6 +14,7 @@ rectangle "Sistema de gestión de recorridos turísticos" {
   usecase "Consultar perfil" as UC3
   usecase "Ver recorridos guardados" as UC4
   usecase "Ver reservas" as UC5
+  usecase "Crear cuenta" as UC6
   
   UC3 --> UC4 : <<include>>
   UC3 --> UC5 : <<include>>
@@ -21,4 +23,5 @@ rectangle "Sistema de gestión de recorridos turísticos" {
 Usuario --> UC1
 Usuario --> UC2
 Usuario --> UC3
+NauthUser --> UC6
 @enduml
